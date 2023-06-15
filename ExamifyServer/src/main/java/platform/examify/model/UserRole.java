@@ -6,14 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class UserRole {
 
 	@Id
@@ -25,5 +19,47 @@ public class UserRole {
 
 	@ManyToOne
 	private Role role;
+	
+	public UserRole() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserRole(Integer userRoleId, User user, Role role) {
+		super();
+		this.userRoleId = userRoleId;
+		this.user = user;
+		this.role = role;
+	}
+
+	public Integer getUserRoleId() {
+		return userRoleId;
+	}
+
+	public void setUserRoleId(Integer userRoleId) {
+		this.userRoleId = userRoleId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "UserRole [userRoleId=" + userRoleId + ", user=" + user + ", role=" + role + "]";
+	}
+	
+	
 
 }

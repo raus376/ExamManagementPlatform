@@ -58,4 +58,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public User deleteUser(Integer userId) throws Exception {
+		
+	      Optional<User> optUser=userRepository.findById(userId);
+	      
+	      if(!optUser.isEmpty()) {
+	    	  userRepository.deleteById(userId);
+	    	  return optUser.get();
+	      }else {
+	    	  throw new Exception("User not present with userId: "+userId);
+	      }
+	}
+
 }

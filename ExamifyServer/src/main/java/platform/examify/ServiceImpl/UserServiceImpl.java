@@ -1,5 +1,6 @@
 package platform.examify.ServiceImpl;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,9 +28,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user, Set<UserRole> userRoles) throws Exception {
 		// TODO Auto-generated method stub
-		User isUserExist = this.userRepository.findByUserName(user.getUserName());
+		Optional<User> isUserExist = userRepository.findByUserName(user.getUserName());
 		User createdUser = new User();
-		if (isUserExist != null) {
+		if (isUserExist.isPresent()) {
 			logger.info("User already Exists");
 			throw new Exception("User already present");
 		} else {
@@ -43,6 +44,18 @@ public class UserServiceImpl implements UserService {
 
 		}
 		return createdUser;
+	}
+
+	@Override
+	public User getUser(String userName) throws Exception {
+
+		Optional<User> opt=userRepository.findByUserName(userName);
+		
+		if(!opt.isEmpty()) {
+			return opt.get();
+		}else {
+			throw new Exception("User not found with userName: "+userName);
+		}
 	}
 
 }

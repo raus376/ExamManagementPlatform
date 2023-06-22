@@ -10,8 +10,10 @@ import platform.examify.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	public Optional<User> findByUserName(String userName);
-	
+	public Optional<User> findByUniqueName(String uniqueName);
+
 	public Optional<User> findById(Integer userId);
-	
+
+	public Optional<User> findByEmail(String email);
+
 }

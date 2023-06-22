@@ -1,9 +1,15 @@
 package platform.examify.model;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -11,17 +17,21 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.Builder;
 
+@Builder
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private String userName;
+	private String uniqueName;
 	private String password;
 	private String email;
 	private String firstName;
@@ -30,19 +40,19 @@ public class User {
 	private String profileImage;
 	private Boolean isEnable = true;
 
-	@JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
-	private Set<UserRole> userRoles=new HashSet<>();
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role", referencedColumnName = "roleId"))
+	private Set<Role> roles = new HashSet<>();
 
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(Integer id, String userName, String password, String email, String firstName, String lastName,
-			String mobile, String profileImage, Boolean isEnable) {
+	public User(Integer id, String uniqueName, String password, String email, String firstName, String lastName,
+			String mobile, String profileImage, Boolean isEnable, Set<Role> roles) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.uniqueName = uniqueName;
 		this.password = password;
 		this.email = email;
 		this.firstName = firstName;
@@ -50,14 +60,7 @@ public class User {
 		this.mobile = mobile;
 		this.profileImage = profileImage;
 		this.isEnable = isEnable;
-	}
-
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
-	}
-
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+		this.roles = roles;
 	}
 
 	public Integer getId() {
@@ -74,14 +77,6 @@ public class User {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -132,11 +127,66 @@ public class User {
 		this.isEnable = isEnable;
 	}
 
+	public String getUniqueName() {
+		return uniqueName;
+	}
+
+	public void setUniqueName(String uniqueName) {
+		this.uniqueName = uniqueName;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		List<SimpleGrantedAuthority> authorities = this.roles.stream()
+				.map((role) -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
+
+		return authorities;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return isEnable;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", email=" + email
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile + ", isEnable="
-				+ isEnable + "]";
+		return "User [id=" + id + ", uniqueName=" + uniqueName + ", password=" + password + ", email=" + email
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile + ", profileImage="
+				+ profileImage + ", isEnable=" + isEnable + ", roles=" + roles + "]";
 	}
 
 }

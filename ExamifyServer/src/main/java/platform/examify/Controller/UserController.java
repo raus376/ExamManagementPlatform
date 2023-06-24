@@ -1,9 +1,15 @@
 package platform.examify.Controller;
 
+import java.security.Principal;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +23,15 @@ import platform.examify.model.User;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
+	private Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserDetailsService userDetailsService;
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
@@ -28,7 +39,7 @@ public class UserController {
 
 		User createdUser = this.userService.createUser(user);
 		return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
- 
+
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
@@ -47,6 +58,12 @@ public class UserController {
 		User deletedUser = userService.deleteUser(userId);
 
 		return new ResponseEntity<>(deletedUser, HttpStatus.ACCEPTED);
+	}
+
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL')")
+	@GetMapping("/current-user")
+	public User currentUser(Principal princple) {
+		return (User) this.userDetailsService.loadUserByUsername(princple.getName());
 	}
 
 }

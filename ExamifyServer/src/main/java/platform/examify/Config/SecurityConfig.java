@@ -20,7 +20,7 @@ import platform.examify.Security.JwtAuthenticationFilter;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
+ 
 	@Autowired
 	private JwtAuthenticationEntryPoint point;
 	@Autowired
@@ -35,9 +35,11 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable())
+		http
+		.csrf(csrf -> csrf.disable()).cors(cors -> cors.getClass())
 				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
+						auth -> auth.requestMatchers("/auth/**","HttpMethod.OPTIONS").permitAll()
+						.anyRequest().authenticated())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(point))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
@@ -45,7 +47,7 @@ public class SecurityConfig {
 
 		return http.build();
 	}
-
+ 
 	@Bean
 	public DaoAuthenticationProvider doDaoAuthenticationProvider() {
 

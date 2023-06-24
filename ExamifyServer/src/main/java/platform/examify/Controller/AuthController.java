@@ -2,16 +2,19 @@ package platform.examify.Controller;
 
 import java.security.Principal;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +30,9 @@ import platform.examify.model.User;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("*")
 public class AuthController {
-
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -52,6 +56,7 @@ public class AuthController {
 		String token = this.helper.generateToken(userDetails);
 
 		JwtResponse response = JwtResponse.builder().token(token).userName(userDetails.getUsername()).build();
+		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
@@ -84,6 +89,12 @@ public class AuthController {
 	public String getLoggedInUser(Principal principle) {
 
 		return principle.getName();
+	}
+
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL')")
+	@GetMapping("/current-user")
+	public User currentUser(Principal princple) {
+		return (User) this.userDetailsService.loadUserByUsername(princple.getName());
 	}
 
 }

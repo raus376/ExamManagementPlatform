@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="bootstrap-wrapper">
 
     <div class="container">
@@ -14,18 +15,24 @@
 
                 <h1 class="text-center">Login Here !!</h1>
 
-                <form action="">
+                <form (ngSubmit)="formSubmit()">
 
                     <!-- username field -->
                     <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>User Name</mat-label>
-                        <input required matInput placeholder="Enter Your User Name">
+                        <mat-label>User Email</mat-label>
+                        <input
+                        [(ngModel)]="loginData.email"
+                        name="email"
+                        required matInput placeholder="Enter Your User Name">
                     </mat-form-field>
 
                     <!-- user_password field -->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>User Password</mat-label>
-                        <input required type="password" matInput placeholder="Enter Your Password">
+                        <input
+                        [(ngModel)]="loginData.password"
+                        name="password"
+                        required type="password" matInput placeholder="Enter Your Password">
                     </mat-form-field>
 
                     <div class="container text-center" style="margin-bottom: 20px;">

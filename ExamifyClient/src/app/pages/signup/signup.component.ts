@@ -11,7 +11,7 @@ export class SignupComponent  implements OnInit {
   constructor(private userService: UserService) { }
 
   public User = {
-    userName: '',
+    uniqueName: '',
     password: '',
     firstName: '',
     lastName: '',
@@ -24,7 +24,7 @@ export class SignupComponent  implements OnInit {
 
   formSubmit() {
 
-    if (this.User.userName == '' || this.User.userName == null) {
+    if (this.User.uniqueName == '' || this.User.uniqueName == null) {
       Swal.fire("username required")
       return;
     }
@@ -41,8 +41,8 @@ export class SignupComponent  implements OnInit {
         )
       },
       (error) => {
-        console.log(error);
-        Swal.fire("Some thing went wrong")
+        console.log(error.error);
+        Swal.fire(error.error.message)
       }
     )
   }

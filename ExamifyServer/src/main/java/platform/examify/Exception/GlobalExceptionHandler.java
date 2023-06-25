@@ -48,10 +48,37 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(UserException.class)
-	public ResponseEntity<ErrorDetails> packageExceptionHandler(UserException pe, WebRequest req) {
+	public ResponseEntity<ErrorDetails> userExceptionHandler(UserException ue, WebRequest req) {
 		ErrorDetails ped = new ErrorDetails();
 		ped.setTimestamp(LocalDateTime.now());
-		ped.setMessage(pe.getMessage());
+		ped.setMessage(ue.getMessage());
+		ped.setDescription(req.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(ped, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(CategoryException.class)
+	public ResponseEntity<ErrorDetails> categoryExceptionHandler(CategoryException ce, WebRequest req) {
+		ErrorDetails ped = new ErrorDetails();
+		ped.setTimestamp(LocalDateTime.now());
+		ped.setMessage(ce.getMessage());
+		ped.setDescription(req.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(ped, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(QuizException.class)
+	public ResponseEntity<ErrorDetails> quizExceptionHandler(QuizException qe, WebRequest req) {
+		ErrorDetails ped = new ErrorDetails();
+		ped.setTimestamp(LocalDateTime.now());
+		ped.setMessage(qe.getMessage());
+		ped.setDescription(req.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(ped, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(QuestionException.class)
+	public ResponseEntity<ErrorDetails> questionExceptionHandler(QuestionException qe, WebRequest req) {
+		ErrorDetails ped = new ErrorDetails();
+		ped.setTimestamp(LocalDateTime.now());
+		ped.setMessage(qe.getMessage());
 		ped.setDescription(req.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(ped, HttpStatus.BAD_REQUEST);
 	}

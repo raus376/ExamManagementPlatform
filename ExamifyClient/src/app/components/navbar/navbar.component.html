@@ -12,7 +12,7 @@
     *ngIf="!isLoggedIn"
     [routerLink]="'/signup'" color="accent" mat-flat-button>Register</a>
    
-    <a 
+    <a routerLink="/admin/profile"
     *ngIf="isLoggedIn"
      color="accent" mat-flat-button>
      {{ user?.uniqueName }}

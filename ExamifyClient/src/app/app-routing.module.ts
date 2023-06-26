@@ -7,6 +7,8 @@ import { DashboardComponent } from './pages/admin/dashboard/dashboard.component'
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
+import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 
 
 const routes: Routes = [
@@ -35,6 +37,13 @@ const routes: Routes = [
     {
       path:'profile',
       component:ProfileComponent,
+    },
+    {
+      path:'categories',
+      component:ViewCategoriesComponent
+    },{
+      path:'add-category',
+      component:AddCategoryComponent
     }
   ]
 },{

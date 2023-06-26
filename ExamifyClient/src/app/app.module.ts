@@ -28,6 +28,7 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     WelcomeComponent,
     ViewCategoriesComponent,
     AddCategoryComponent,
+    ViewQuizzesComponent,
 
   ],
   imports: [

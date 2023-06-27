@@ -92,6 +92,27 @@ public class QuestionController {
 		}
 	}
 
+	@GetMapping("/getAll/quiz/{quizId}")
+	public ResponseEntity<?> getAllQuestionOfAdminByQuizId(@PathVariable("quizId") Integer quizId)
+			throws QuestionException {
+
+		if (quizId == null) {
+			throw new QuestionException("Quiz Id not be null");
+		}
+		try {
+			Quiz quiz = quizService.getQuiz(quizId);
+
+			Set<Question> questions = quiz.getQuestions();
+
+			List list = new ArrayList<>(questions);
+//			Collections.shuffle(list);
+
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			throw new QuestionException(e.getMessage());
+		}
+	}
+
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update")
 	public ResponseEntity<Question> updateQuestion(@RequestBody Question question) throws QuestionException {
@@ -106,7 +127,8 @@ public class QuestionController {
 	}
 
 	@DeleteMapping("/delete/{questionId}")
-	public ResponseEntity<Question> deleteQuestion(@PathVariable("questionId") Long questionId) throws QuestionException{
+	public ResponseEntity<Question> deleteQuestion(@PathVariable("questionId") Long questionId)
+			throws QuestionException {
 
 		try {
 			Question question = questionService.deleteQuestion(questionId);

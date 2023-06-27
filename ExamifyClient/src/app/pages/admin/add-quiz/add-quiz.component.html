@@ -1,0 +1,69 @@
+<mat-card>
+    <h1>All Quiz</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+
+
+                <form>
+
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Enter Title</mat-label>
+                        <input type="text" name="Title" placeholder="Enter Title" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Enter Description</mat-label>
+                        <textarea rows="5" type="text" name="Title" placeholder="Enter Description" matInput></textarea>
+                    </mat-form-field>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- for max marks -->
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Maximum Marks</mat-label>
+                                <input type="number" name="Maximum Marks" placeholder="Enter Max Marks" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- number of questions| -->
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Enter Number Of Question</mat-label>
+                                <input type="number" name="Number of Questions" placeholder="Enter Number of Question"
+                                    matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+
+                    <section class="example-section">
+                        <mat-slide-toggle class="example-margin" [checked]="false">
+                            Publish Status
+                        </mat-slide-toggle>
+                    </section>
+
+
+                <br />
+                    <mat-form-field appearance="outline" class="mt20 w100" color="accent">
+                        <mat-label>Fa</mat-label>
+                        <mat-select name="category">
+                            <mat-option *ngFor="let c of categories" [value]="c.cid">
+                                {{c.title}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    
+                    <div class="container text-center">
+                        <button mat-raised-button color="accent">Add Quiz</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</mat-card>

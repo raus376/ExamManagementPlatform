@@ -1,32 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-add-quiz',
-  templateUrl: './add-quiz.component.html',
-  styleUrls: ['./add-quiz.component.css']
+  selector: 'app-update-quiz',
+  templateUrl: './update-quiz.component.html',
+  styleUrls: ['./update-quiz.component.css']
 })
-export class AddQuizComponent implements OnInit{
-  
-  constructor(private _category:CategoryService,private _quiz:QuizService){};
+export class UpdateQuizComponent implements OnInit {
 
-  categories:any=[];
-  
-  quizData={
-    title:'',
-    description:'',
-    maxMarks:'',
-    numberOfQuestions:'',
-    isActive:true,
-    category:{
-      cid:''
-    }
-  }
-  
-  
-  ngOnInit(): void {
+  constructor(private _route: ActivatedRoute,private _quiz:QuizService,private _category:CategoryService,private _navigateRoute:Router) { }
+
+  qId: any = 0;
+  quiz:any;
+  categories:any;
+
+  ngOnInit(): void { 
+    this.qId = this._route.snapshot.params['qid'];
+   
+    this._quiz.getQuiz(this.qId).subscribe((data)=>{
+      this.quiz=data;
+
+    },
+    (error)=>{
+      console.log(error);
+      Swal.fire("Server Error !");
+    })
+
+    //get All category
     this._category.category().subscribe((data:any)=>{
       this.categories=data;
     },
@@ -34,11 +37,13 @@ export class AddQuizComponent implements OnInit{
       Swal.fire("Server Error !");
       console.log(error);
     })
+  
   }
 
-  public addQuiz(){
+
+  public updateQuiz(){
     
-    if(this.quizData.title.trim()=='' || this.quizData.title==null){
+    if(this.quiz.title.trim()=='' || this.quiz.title==null){
       Swal.fire({
         title: 'Title Required',
         icon: 'error',
@@ -48,7 +53,7 @@ export class AddQuizComponent implements OnInit{
       return;
     }
 
-    if(this.quizData.description.trim()=='' || this.quizData.description==null){
+    if(this.quiz.description.trim()=='' || this.quiz.description==null){
       Swal.fire({
         title: 'Description Required',
         icon: 'error',
@@ -58,7 +63,7 @@ export class AddQuizComponent implements OnInit{
       return;
   }
 
-  if(this.quizData.maxMarks=='' || this.quizData.maxMarks==null){
+  if(this.quiz.maxMarks=='' || this.quiz.maxMarks==null){
     Swal.fire({
       title: 'Maximum_Marks Required',
       icon: 'error',
@@ -68,7 +73,7 @@ export class AddQuizComponent implements OnInit{
     return;
 }
 
-if(this.quizData.numberOfQuestions=='' || this.quizData.numberOfQuestions==null){
+if(this.quiz.numberOfQuestions=='' || this.quiz.numberOfQuestions==null){
   Swal.fire({
     title: 'Number_Of_Questions Required',
     icon: 'error',
@@ -78,7 +83,7 @@ if(this.quizData.numberOfQuestions=='' || this.quizData.numberOfQuestions==null)
   return;
 }
 
-if(this.quizData.category.cid=='' || this.quizData.category.cid==null){
+if(this.quiz.category.cid=='' || this.quiz.category.cid==null){
   Swal.fire({
     title: 'Category Required !',
     icon: 'error',
@@ -88,37 +93,31 @@ if(this.quizData.category.cid=='' || this.quizData.category.cid==null){
   return;
 }
 
+//updating quiz
 
- this._quiz.addQuiz(this.quizData).subscribe((data)=>{
-  
-  this.quizData={
-    title:'',
-    description:'',
-    maxMarks:'',
-    numberOfQuestions:'',
-    isActive:true,
-    category:{
-      cid:''
-    }
-  }
+this._quiz.updateQuiz(this.quiz).subscribe((data:any)=>{
   
   Swal.fire({
-    title: 'Quiz Added Successfully',
+    title: 'Quiz Updated Successfully',
     icon: 'success',
     showConfirmButton: true,
     timer: 2500 // 4 seconds
+  }).then(()=>{
+    this._navigateRoute.navigate(['/admin/quizzes']);
   })
  },
  (error)=>{
   console.log(error);
   Swal.fire({
-    title: 'Server Error !',
+    title: 'Server Error while Updating Quiz !',
     icon: 'error',
     showConfirmButton: true,
     timer: 2500 // 4 seconds
   })
  })
 
+
   }
 
+  
 }

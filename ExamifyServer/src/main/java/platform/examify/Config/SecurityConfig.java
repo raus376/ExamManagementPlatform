@@ -21,6 +21,7 @@ import platform.examify.Security.JwtAuthenticationFilter;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
  
+	
 	@Autowired
 	private JwtAuthenticationEntryPoint point;
 	@Autowired

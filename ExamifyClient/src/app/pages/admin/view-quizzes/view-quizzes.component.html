@@ -12,7 +12,7 @@
       
       <mat-card-actions>
         <!-- Card actions go here -->
-        <button mat-raised-button color="accent">Question</button>
+        <button [routerLink]="'/admin/view-questions/'+q.qid+'/'+q.title" mat-raised-button color="accent">Question</button>
         <button mat-stroked-button color="accent" class="ml20">Max Marks: {{q.maxMarks}}</button>
         <button mat-stroked-button color="accent" class="ml20">Questions: {{q.numberOfQuestions}}</button>
         <button mat-raised-button color="accent" class="ml20">Attampts</button>

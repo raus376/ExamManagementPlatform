@@ -86,16 +86,16 @@ if(this.quizData.category.cid=='' || this.quizData.category.cid==null){
 
  this._quiz.addQuiz(this.quizData).subscribe((data)=>{
   
-  // this.quizData={
-  //   title:'',
-  //   description:'',
-  //   maxMark:'',
-  //   numberOfQuestions:'',
-  //   isActive:true,
-  //   category:{
-  //     cid:''
-  //   }
-  // }
+  this.quizData={
+    title:'',
+    description:'',
+    maxMark:'',
+    numberOfQuestions:'',
+    isActive:true,
+    category:{
+      cid:''
+    }
+  }
   
   Swal.fire({
     title: 'Quiz Added Successfully',

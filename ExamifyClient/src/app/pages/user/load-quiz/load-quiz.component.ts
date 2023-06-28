@@ -23,7 +23,7 @@ export class LoadQuizComponent implements OnInit{
 
       if(this.categoryId==0){
 
-        this._quiz.quizzes().subscribe((data)=>{
+        this._quiz.getActiveQuizzes().subscribe((data)=>{
           this.quizzes=data;
           console.log(this.quizzes);
         },(error)=>{
@@ -32,7 +32,7 @@ export class LoadQuizComponent implements OnInit{
         })
       }
       else{
-              this._quiz.getQuizzesOfCategory(this.categoryId).subscribe((data)=>{
+              this._quiz.getActiveQuizzesOfCategory(this.categoryId).subscribe((data)=>{
                 this.quizzes=data;
               },
               (error)=>{

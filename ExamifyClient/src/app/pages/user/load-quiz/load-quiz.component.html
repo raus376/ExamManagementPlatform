@@ -1,5 +1,5 @@
 <div class="bootstrap-wrapper">
-
+{{quizzes|json}}
     <div class="container-fluid">
 
         <h2 class="mt20">Available Quiz</h2>
@@ -27,7 +27,9 @@
                         <button mat-button color="accent">Question: {{q.numberOfQuestions}}</button>
                         <button mat-button color="accent">Max Marks: {{q.maxMarks}}</button>
                         <button mat-raised-button color="primary">View</button>
-                        <button mat-raised-button color="accent">Start</button>
+                        <button
+                        [routerLink]="'/user-dashboard/instructions/'+q.qid"
+                         mat-raised-button color="accent">Start</button>
                       </mat-card-actions>
                       
                 </mat-card>

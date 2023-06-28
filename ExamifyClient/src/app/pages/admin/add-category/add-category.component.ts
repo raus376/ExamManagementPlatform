@@ -26,6 +26,7 @@ export class AddCategoryComponent implements OnInit {
         showConfirmButton: true,
         timer: 2500 // 4 seconds
       })
+      return;
       }
 
       if (this.category.description.trim() == '' || this.category.description == null) {
@@ -35,6 +36,7 @@ export class AddCategoryComponent implements OnInit {
           showConfirmButton: true,
           timer: 2500 // 4 seconds
         })
+        return;
         }
       
      this._category.addCategory(this.category).subscribe((data:any)=>{

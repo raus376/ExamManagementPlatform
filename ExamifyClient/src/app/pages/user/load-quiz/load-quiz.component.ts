@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
 
@@ -17,19 +17,33 @@ export class LoadQuizComponent implements OnInit{
 
 
   ngOnInit(): void { 
-    this.categoryId=this._route.snapshot.params['cId'];
- 
-    if(this.categoryId==0){
+   
+    this._route.params.subscribe((params)=>{
+      this.categoryId=params['cId'];
 
-      this._quiz.quizzes().subscribe((data)=>{
-        this.quizzes=data;
-        console.log(this.quizzes);
-      },(error)=>{
-        Swal.fire("Error While Loading All Quizzes ! Server Error !");
-      })
-    }else{
-console.log("specific quiz");
-    }
+      if(this.categoryId==0){
+
+        this._quiz.quizzes().subscribe((data)=>{
+          this.quizzes=data;
+          console.log(this.quizzes);
+        },(error)=>{
+          console.log(error);
+          Swal.fire("Error While Loading All Quizzes ! Server Error !");
+        })
+      }
+      else{
+              this._quiz.getQuizzesOfCategory(this.categoryId).subscribe((data)=>{
+                this.quizzes=data;
+              },
+              (error)=>{
+                console.log(error);
+                Swal.fire("Error while loading quizzes !");
+              })
+      }
+      
+    });
+ 
+   
   }
 
 

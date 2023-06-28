@@ -33,6 +33,13 @@
                 </mat-card>
             </div>
 
+            <div class="col-md-12" *ngIf="quizzes.length==0">
+                <mat-card>
+                    <mat-card-content>
+                        <h1>No Data found in this Category</h1>
+                    </mat-card-content>
+                </mat-card>
+            </div>
         </div>
     </div>
 </div>

@@ -39,7 +39,7 @@ export class ViewQuizzesComponent implements OnInit{
             icon: 'success',
             showConfirmButton: true,
             timer: 2500 // 4 seconds
-          },).then(()=>{
+          }).then(()=>{ // ,
             window.location.reload();
           })
           

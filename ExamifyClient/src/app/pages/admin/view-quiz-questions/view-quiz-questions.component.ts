@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuizQuestionsService } from 'src/app/services/quiz-questions.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-quiz-questions',
@@ -24,6 +25,34 @@ export class ViewQuizQuestionsComponent implements OnInit{
            this.question=data;
     },(error)=>{
 
+    })
+  }
+
+  //delete Question
+
+  deleteQuestion(qId:any){
+  
+    Swal.fire({
+      icon:'info',
+      showCancelButton:true,
+      confirmButtonText:'Delete',
+      title:'Sure to Delelte ?'
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this._quizQuestion.deleteQuestion(qId).subscribe((data)=>{
+          Swal.fire({
+            title: 'Question Deleted Successfully',
+            icon: 'success',
+            showConfirmButton: true,
+            timer: 2500 // 4 seconds
+          }).then(()=>{
+            window.location.reload();
+          })
+        }, (error)=>{
+          console.log(error);
+          Swal.fire("Error While Deleting Question !");
+        })
+      }
     })
   }
 

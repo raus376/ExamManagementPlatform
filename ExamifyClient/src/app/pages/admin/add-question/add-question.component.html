@@ -18,12 +18,23 @@
 
                     <form (submit)="formSubmit()" class="mt20">
 
-                        <mat-form-field class="example-full-width w100">
+                        <!-- this is for text area but now we use CKEditor -->
+                        <!-- <mat-form-field class="example-full-width w100">
                             <mat-label>Write Question Content</mat-label>
                             <textarea required [(ngModel)]="question.content" name="content" rows="8" matInput
                                 placeholder="Enter here "></textarea>
-                        </mat-form-field>
+                        </mat-form-field> -->
                         <!-- options -->
+
+                        <!-- app.component.html -->
+
+<ckeditor  [(ngModel)]="question.content"
+name="content"
+[editor]="Editor"
+color="primary"
+ data="<h1>Enter Question Content here </h1>">
+</ckeditor>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <!-- option_1 -->

@@ -17,4 +17,9 @@ public interface QuizService {
 
 	public Quiz deleteQuiz(Integer quizId) throws QuizException;
 
+	public Set<Quiz> getQuizzesByCategoryId(Integer cId) throws QuizException;
+
+	public Set<Quiz> getActiveQuizzes() throws QuizException;
+
+	public Set<Quiz> getActiveQuizzesOfCategory(Integer cId) throws QuizException;
 }

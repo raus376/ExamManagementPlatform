@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
                     this.login.loginStatusSubject.next(true);
                   } else if (this.login.getUserRole() == 'ROLE_NORMAL') {
                     // redirect to User page
-                    this.router.navigate(['user-dashboard']);
+                    this.router.navigate(['user-dashboard/0']);
                     this.login.loginStatusSubject.next(true);
                   } else {
                     //logout
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
                     this.login.loginStatusSubject.next(true);
                   } else if (this.login.getUserRole() == 'ROLE_NORMAL') {
                     // redirect to User page
-                    this.router.navigate(['user-dashboard']);
+                    this.router.navigate(['user-dashboard/0']);
                     this.login.loginStatusSubject.next(true);
                   } else {
                     //logout

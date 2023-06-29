@@ -54,7 +54,7 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Question getQuestion(Long questionId) throws QuestionException {
+	public Question getQuestionById(Long questionId) throws QuestionException {
 		// TODO Auto-generated method stub
 		Optional<Question> question = questionRepository.findById(questionId);
 
@@ -97,5 +97,19 @@ public class QuestionServiceImpl implements QuestionService {
 			throw new QuestionException(e.getMessage());
 		}
 	}
+	
+	@Override
+	public Question getQuestionByIdForEvaluateQuiz(Long questionId) throws QuestionException {
+		// TODO Auto-generated method stub
+		Optional<Question> question = questionRepository.findById(questionId);
+
+		if (question.isPresent()) {
+			return question.get();
+		} else {
+			throw new QuestionException("Question not found !");
+		}
+	}
+	
+	
 
 }

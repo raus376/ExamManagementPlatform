@@ -1,5 +1,6 @@
 package platform.examify.Controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import platform.examify.Exception.CategoryException;
 import platform.examify.Exception.QuizException;
 import platform.examify.Service.QuizService;
-import platform.examify.model.Category;
+import platform.examify.model.Question;
 import platform.examify.model.Quiz;
 
 @RestController
@@ -149,5 +149,6 @@ public class QuizController {
 		}
 
 	}
+
 
 }

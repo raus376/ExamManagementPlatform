@@ -71,34 +71,8 @@ export class StartComponent implements OnInit {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        console.log(this.questions);
-        this.questions.forEach((q: any) => {
-          if (q.answer == q.givenAnswer) {
-            console.log(q.answer + " " + this.questions[0].quiz.maxMarks);
-            this.correctAnswers++;
-            let marksSingle = this.questions[0].quiz.maxMarks / this.questions.length;
-            this.marksGot += marksSingle;
-          }
 
-          if (q.givenAnswer.trim() != '') {
-            this.attempted++;
-          }
-
-        })
-        console.log("c" + this.correctAnswers);
-        console.log("g" + this.marksGot + " " + this.attempted);
-
-        this.resultData = {
-          marksObtained: this.marksGot,
-          totalAttempted: this.attempted,
-          correctAns: this.correctAnswers,
-          quizTitle: this.questions[0].quiz.title,
-          totalQuestions: this.questions.length,
-          totalMarks: this.questions[0].quiz.maxMarks
-        }
-
-
-        this._navigateRoute.navigate(['show-result'], { queryParams: this.resultData });
+        this.evaluateQuizFromServer();
 
       } else {
         Swal.fire("Denied !");
@@ -109,7 +83,7 @@ export class StartComponent implements OnInit {
   startTime() {
     let time = window.setInterval(() => {
       if (this.timer <= 0) {
-        this.automaticSubmit();
+        this.evaluateQuizFromServer();
         clearInterval(time);
       } else {
         this.timer--;
@@ -125,7 +99,7 @@ export class StartComponent implements OnInit {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
 
-  automaticSubmit() {
+  evaluateQuiz() {
 
     console.log(this.questions);
     this.questions.forEach((q: any) => {
@@ -153,10 +127,29 @@ export class StartComponent implements OnInit {
       totalMarks: this.questions[0].quiz.maxMarks
     }
 
-
     this._navigateRoute.navigate(['show-result'], { queryParams: this.resultData });
 
+  }
 
+  evaluateQuizFromServer() {
+
+    this._queston.evaluateQuiz(this.questions).subscribe((data:any)=>{
+      console.log(data);
+      this.resultData = {
+        marksObtained: data.marksGot,
+        totalAttempted:data.attempted,
+        correctAns: data.correctAnswer,
+        quizTitle: this.questions[0].quiz.title,
+        totalQuestions: this.questions.length,
+        totalMarks: this.questions[0].quiz.maxMarks
+      }
+  
+      this._navigateRoute.navigate(['show-result'], { queryParams: this.resultData });
+      
+    },(error)=>{
+      console.log(error);
+      Swal.fire("Error while Evaluating ! Server Error !")
+    })
 
   }
 

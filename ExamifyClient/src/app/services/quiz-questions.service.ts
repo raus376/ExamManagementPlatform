@@ -7,23 +7,30 @@ import baseUrl from './helper';
 })
 export class QuizQuestionsService {
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
-  public getQuestionsOfQuiz(quizId:any){
+  public getQuestionsOfQuiz(quizId: any) {
     return this._http.get(`${baseUrl}/question/getAll/quiz/${quizId}`)
   }
 
-  public getQuestionsOfQuizForTest(quizId:any){
+  public getQuestionsOfQuizForTest(quizId: any) {
     return this._http.get(`${baseUrl}/question/quiz/${quizId}`)
   }
 
   //adding question
-  public addQuestion(question:any){
-    return this._http.post(`${baseUrl}/question/create`,question);
+  public addQuestion(question: any) {
+    return this._http.post(`${baseUrl}/question/create`, question);
   }
 
   //delete question
-  public deleteQuestion(qId:any){
+  public deleteQuestion(qId: any) {
     return this._http.delete(`${baseUrl}/question/delete/${qId}`);
   }
+
+  //evaluate quiz
+  public evaluateQuiz(questions: any) {
+    return this._http.post(`${baseUrl}/question/evaluate/quiz`, questions);
+  }
+
+
 }

@@ -3,6 +3,7 @@ package platform.examify.Controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class QuestionController {
 		}
 
 		try {
-			Question question = questionService.getQuestion(questionId);
+			Question question = questionService.getQuestionById(questionId);
 
 			return new ResponseEntity<>(question, HttpStatus.OK);
 		} catch (Exception e) {
@@ -137,6 +138,43 @@ public class QuestionController {
 		} catch (Exception e) {
 			throw new QuestionException(e.getMessage());
 		}
+	}
+
+	@PostMapping("/evaluate/quiz")
+	public ResponseEntity<?> evaluateQuiz(@RequestBody List<Question> questions) throws QuestionException {
+
+		Double marksGot = 0.0;
+		Integer correctAnswers = 0;
+		Integer attempted = 0;
+		long length = questions.size();
+
+		for (Question q : questions) {
+			try {
+				Question question = questionService.getQuestionByIdForEvaluateQuiz(q.getQuesId());
+
+				if (question.getAnswer().equals(q.getGivenAnswer())) {
+
+					correctAnswers++;
+					double singleMarks = (double) questions.get(0).getQuiz().getMaxMarks() / length;
+
+					marksGot += singleMarks;
+
+				}
+
+				if (!q.getGivenAnswer().equals("")) {
+					attempted++;
+				}
+
+			} catch (QuestionException e1) {
+				// TODO Auto-generated catch block
+				System.err.println(e1.getMessage());
+				throw new QuestionException(e1.getMessage());
+			}
+		}
+		Map<String, Object> ofMap = Map.of("marksGot", marksGot, "correctAnswer", correctAnswers, "attempted",
+				attempted);
+
+		return new ResponseEntity<>(ofMap, HttpStatus.ACCEPTED);
 	}
 
 }

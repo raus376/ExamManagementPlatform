@@ -25,7 +25,7 @@ export class LoadQuizComponent implements OnInit{
 
         this._quiz.getActiveQuizzes().subscribe((data)=>{
           this.quizzes=data;
-          console.log(this.quizzes);
+          // console.log(this.quizzes);
         },(error)=>{
           console.log(error);
           Swal.fire("Error While Loading All Quizzes ! Server Error !");

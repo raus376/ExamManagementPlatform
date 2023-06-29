@@ -13,6 +13,10 @@ export class QuizQuestionsService {
     return this._http.get(`${baseUrl}/question/getAll/quiz/${quizId}`)
   }
 
+  public getQuestionsOfQuizForTest(quizId:any){
+    return this._http.get(`${baseUrl}/question/quiz/${quizId}`)
+  }
+
   //adding question
   public addQuestion(question:any){
     return this._http.post(`${baseUrl}/question/create`,question);

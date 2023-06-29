@@ -1,0 +1,83 @@
+
+<div class="bootstrap-wrapper">
+
+    <div class="container-fluid">
+       
+        <div class="row">
+
+            <div class="col-md-2">
+                <!-- insturction  -->
+               instruction
+                        </div>
+                        <div class="col-md-8">
+                
+                            <ng-container *ngIf="questions">
+                <mat-card class="mt20">
+                    <h1 class="ml20 mt20">Ongoing Quiz: <b>{{questions[0].quiz.title}} </b></h1>
+                </mat-card>
+                                
+                               
+                            </ng-container>
+
+                            <mat-card *ngFor="let q of questions;let i=index" class="mt10">
+                            
+                                <mat-card-content>
+                                    <p><b>Q{{i+1}})</b> <span class="ml20" [innerHTML]="q.content"></span> </p>
+                                  
+                             
+                             <mat-divider></mat-divider>
+                               
+                             <div class="row mt20">
+                                <div class="col-md-6">
+                                    <input [(ngModel)]="q.givenAnswer"
+                                     type="radio" 
+                                    [value]="q.option_1"
+                                    [name]="'optionGroup' + i"
+                                    >
+                                    {{q.option_1}}
+                                </div>
+                                <div class="col-md-6">
+                                    <input [(ngModel)]="q.givenAnswer"
+                                     type="radio" 
+                                    [value]="q.option_2"
+                                    [name]="'optionGroup' + i"
+                                    >
+                                    {{q.option_2}}
+                                </div>
+                            </div>
+                            <div class="row mt20">
+                                <div class="col-md-6">
+                                    <input *ngIf="q.option_3" [(ngModel)]="q.givenAnswer"
+                                    type="radio" 
+                                    [value]="q.option_3"
+                                    [name]="'optionGroup' + i"
+                                    >
+                                    {{q.option_3}}
+                                </div>
+                                <div class="col-md-6">
+                                    <input *ngIf="q.option_4"
+                                     [(ngModel)]="q.givenAnswer"
+                                     type="radio" 
+                                    [value]="q.option_4"
+                                    [name]="'optionGroup' + i"
+                                    >
+                                    {{q.option_4}}
+                                </div>
+                            </div>
+                                  
+                            </mat-card-content>
+                               
+                            </mat-card>
+
+                            <div class="container text-center mt20">
+                                <button (click)="submitQuiz()"
+                                 mat-raised-button color="accent">Submit</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- time  -->
+                        </div>
+
+        </div>
+    </div>
+</div>

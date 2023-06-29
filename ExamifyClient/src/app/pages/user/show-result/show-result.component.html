@@ -1,0 +1,42 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="container mt20">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6">
+        <mat-card>
+          <mat-card-header>
+            
+          </mat-card-header>
+  
+          <mat-card-content class="text-center">
+            <mat-card-title class="text-center">
+               <h1><b>Quiz Result</b></h1> 
+               <h1>Attempted: <b>{{resultData.quizTitle}}</b></h1> 
+              </mat-card-title>
+              <mat-divider></mat-divider>
+            <h1>Marks Obtained: {{ resultData.marksObtained }}</h1>
+            <h1>Correct Answers: {{ resultData.correctAns }}</h1>
+            <h1>Question Attempted: {{ resultData.totalAttempted }}</h1>
+          </mat-card-content>
+       
+        </mat-card>
+
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div class="mat-card">
+      <div>
+        <mat-card-actions class="d-flex justify-content-center">
+          <button mat-raised-button class="mr20" color="accent">Print</button>
+          <button mat-raised-button color="primary">Home</button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  

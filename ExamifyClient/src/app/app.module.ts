@@ -41,6 +41,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SidebarComponent as UserSidebar } from './pages/user/sidebar/sidebar.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
+import { ShowResultComponent } from './pages/user/show-result/show-result.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +68,9 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
     SidebarComponent,
     UserSidebar,
     LoadQuizComponent,
-    InstructionsComponent
+    InstructionsComponent,
+    StartComponent,
+    ShowResultComponent
   ],
   imports: [
     BrowserModule,

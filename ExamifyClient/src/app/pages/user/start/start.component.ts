@@ -136,7 +136,7 @@ export class StartComponent implements OnInit {
     this._queston.evaluateQuiz(this.questions).subscribe((data:any)=>{
       console.log(data);
       this.resultData = {
-        marksObtained: data.marksGot,
+        marksObtained: Number(data.marksGot).toFixed(2),
         totalAttempted:data.attempted,
         correctAns: data.correctAnswer,
         quizTitle: this.questions[0].quiz.title,

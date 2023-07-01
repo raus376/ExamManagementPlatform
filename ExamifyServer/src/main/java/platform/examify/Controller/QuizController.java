@@ -105,22 +105,6 @@ public class QuizController {
 
 	}
 
-	@GetMapping("/category/{cId}")
-	public ResponseEntity<?> getQuizOfCategory(@PathVariable("cId") Integer cId) throws QuizException {
-
-		if (cId == null) {
-			throw new QuizException("Quiz Id Required !");
-		}
-
-		try {
-			Set<Quiz> quiz = quizService.getQuizzesByCategoryId(cId);
-
-			return new ResponseEntity<>(quiz, HttpStatus.OK);
-		} catch (Exception e) {
-			throw new QuizException(e.getMessage());
-		}
-
-	}
 
 	@GetMapping("/getActive")
 	public ResponseEntity<Set<Quiz>> getActiveQuizzes() throws QuizException {
@@ -142,6 +126,23 @@ public class QuizController {
 
 		try {
 			Set<Quiz> quiz = quizService.getActiveQuizzesOfCategory(cId);
+
+			return new ResponseEntity<>(quiz, HttpStatus.OK);
+		} catch (Exception e) {
+			throw new QuizException(e.getMessage());
+		}
+
+	}
+	
+	@GetMapping("/category/{cId}")
+	public ResponseEntity<?> getQuizByCategory(@PathVariable("cId") Integer cId) throws QuizException {
+
+		if (cId == null) {
+			throw new QuizException("Quiz Id Required !");
+		}
+
+		try {
+			Set<Quiz> quiz = quizService.getQuizByCategory(cId);
 
 			return new ResponseEntity<>(quiz, HttpStatus.OK);
 		} catch (Exception e) {

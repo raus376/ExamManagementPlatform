@@ -86,21 +86,7 @@ public class QuizServiceImpl implements QuizService {
 		}
 	}
 
-	@Override
-	public Set<Quiz> getQuizzesByCategoryId(Integer cId) throws QuizException {
-
-		// TODO Auto-generated method stub
-		try {
-			Category category = new Category();
-			category.setCId(cId);
-
-			Set<Quiz> quizOpt = quizRepository.findByCategory(category);
-
-			return quizOpt;
-		} catch (Exception e) {
-			throw new QuizException("Quiz not found !");
-		}
-	}
+	
 
 	@Override
 	public Set<Quiz> getActiveQuizzes() throws QuizException {
@@ -120,6 +106,21 @@ public class QuizServiceImpl implements QuizService {
 			category.setCId(cId);
 
 			Set<Quiz> quizOpt = quizRepository.findByCategoryAndIsActive(category, true);
+
+			return quizOpt;
+		} catch (Exception e) {
+			throw new QuizException("Quiz not found !");
+		}
+	}
+
+	@Override
+	public Set<Quiz> getQuizByCategory(Integer cId) throws QuizException {
+		// TODO Auto-generated method stub
+		try {
+			Category category = new Category();
+			category.setCId(cId);
+
+			Set<Quiz> quizOpt = quizRepository.findByCategory(category);
 
 			return quizOpt;
 		} catch (Exception e) {

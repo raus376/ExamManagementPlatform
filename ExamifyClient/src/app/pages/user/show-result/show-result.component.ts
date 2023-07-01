@@ -29,7 +29,7 @@ export class ShowResultComponent implements OnInit{
     window.print();
   }
 
-  //preventing web back button
+  // //preventing web back button
   preventBackButton() {
     history.pushState(null, '', location.href);
 
@@ -39,7 +39,7 @@ export class ShowResultComponent implements OnInit{
   }
 
   navegateToHomePage(){
-    this._navigateRoute.navigate(['show-result']);
+    this._navigateRoute.navigate(['user-dashboard/0']);
   }
 
 }

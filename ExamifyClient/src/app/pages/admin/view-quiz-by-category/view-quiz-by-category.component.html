@@ -16,7 +16,6 @@
         <button mat-stroked-button color="accent" class="ml20">Max Marks: {{q.maxMarks}}</button>
         <button mat-stroked-button color="accent" class="ml20">Questions: {{q.numberOfQuestions}}</button>
         <button mat-raised-button color="accent" class="ml20">Attampts</button>
-        <button mat-raised-button color="accent" class="ml20">  {{ q.isActive ? 'Active' : 'Inactive' }}</button>
       </mat-card-actions>
       <button [routerLink]="'/admin/quiz/'+q.qid" mat-raised-button color="primary" class="mt10">Update Quiz</button>
       <button (click)="deleteQuiz(q.qid)" mat-raised-button color="warn" class="mt10">Delete Quiz</button>

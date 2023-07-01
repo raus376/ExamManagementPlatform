@@ -45,6 +45,11 @@ import { StartComponent } from './pages/user/start/start.component';
 import { ShowResultComponent } from './pages/user/show-result/show-result.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { UserNavbarComponent } from './pages/user/user-navbar/user-navbar.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { UserHomeComponent } from './pages/user/user-home/user-home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +77,11 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     LoadQuizComponent,
     InstructionsComponent,
     StartComponent,
-    ShowResultComponent
+    ShowResultComponent,
+    UserNavbarComponent,
+    UserProfileComponent,
+    UserHomeComponent,
+    ViewQuizByCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +104,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     AngularEditorModule,
     MatProgressSpinnerModule,
     NgxUiLoaderModule,
+    FlexLayoutModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground:true
     })

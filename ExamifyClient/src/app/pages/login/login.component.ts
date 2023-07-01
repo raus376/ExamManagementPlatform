@@ -97,4 +97,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  resetData(){
+    this.loginData={
+      "email": '',
+      "password": ''
+    }
+  }
+
 }

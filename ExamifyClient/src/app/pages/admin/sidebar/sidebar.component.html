@@ -1,9 +1,16 @@
+
 <mat-card>
     <mat-action-list>
-        <div mat-subheader>Menu</div>
+        <div class="mat-card">
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-content class="center-content">
+              <h2>Admin Access</h2>
+            </mat-card-content>
+          </div>
+          
         <button routerLink="/admin" mat-list-item>
-            <mat-icon mat-list-icon>home</mat-icon>
-       Home</button>
+            <mat-icon class="mat-icon" mat-list-icon>person</mat-icon>
+            Administrator</button>
 
        <button mat-list-item routerLink="/admin/profile">
         <mat-icon mat-list-icon>account_circle</mat-icon>
@@ -20,7 +27,7 @@
        <button mat-list-item routerLink="/admin/add-quiz">
         <mat-icon mat-list-icon>add</mat-icon>
    Add Quize</button>
-       <button mat-list-item routerLink="/admin/profile">
+       <button (click)="logout()" mat-list-item routerLink="/admin/profile">
         <mat-icon mat-list-icon>logout</mat-icon>
    Logout</button>
     </mat-action-list>

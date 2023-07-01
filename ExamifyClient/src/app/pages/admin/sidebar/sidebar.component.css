@@ -1,0 +1,35 @@
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:aqua;
+  }
+  
+  .example-header-image {
+    margin-top: 10px;
+    background-image: url('../../../../assets/icons8-category-64.png');
+    background-size: cover;
+  }
+  
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(210, 228, 95);
+  }
+
+  .center-content h2{
+    margin-top: 20px;
+  }
+
+  .mat-icon{
+    padding-top: 4px;
+    padding-right: 5px;
+  }
+
+  mat-action-list{
+    background-color: rgb(234, 213, 156);
+  }
+  
+  

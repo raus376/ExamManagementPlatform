@@ -1,0 +1,31 @@
+<mat-toolbar color="accent">
+    <a (click)="userHome()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>home</mat-icon>
+    </a>
+    <span>Examify</span>
+    <span class="example-spacer"></span>
+   
+    <a
+    *ngIf="!isLoggedIn"
+     [routerLink]="'/login'" color="accent" style="margin-right: 15px;" mat-flat-button>Login</a>
+    <a 
+    *ngIf="!isLoggedIn"
+    [routerLink]="'/signup'" color="accent" mat-flat-button>Register</a>
+   
+    <a (click)="userProfile()"
+    *ngIf="isLoggedIn"
+     color="accent" mat-flat-button>
+     {{ user?.uniqueName }}
+    </a>
+
+    <a 
+    (click)="logout()"
+    *ngIf="isLoggedIn"
+     color="accent" mat-flat-button>Logout</a>
+ 
+  </mat-toolbar>
+  
+  <div class="toolbar-content">
+    <ng-content></ng-content>
+  </div>
+  

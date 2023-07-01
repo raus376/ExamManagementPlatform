@@ -1,0 +1,31 @@
+mat-card{
+  background-color:rgb(252, 253, 235);
+}
+
+.truncate{
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.example-header-image {
+    background-image: url('../../../../assets/icons8-exam-64.png');
+    background-size: cover;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 16px;
+  }
+  
+  .grid-item {
+    margin-bottom: 20px;
+  }
+  
+  
+
+
+  

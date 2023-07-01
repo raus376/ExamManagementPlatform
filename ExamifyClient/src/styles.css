@@ -3,7 +3,13 @@
 html, body { height: 100%; 
 
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: rgb(222, 44, 77);}
+body {
+     margin: 0; font-family: Roboto,
+      "Helvetica Neue", sans-serif; 
+      color: rgb(222, 44, 77);
+      background-color:blanchedalmond;
+      background-size:cover ;
+    }
 
 .text-center{
     text-align: center;
@@ -34,3 +40,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: rgb(
 .mb10{
     margin-bottom:10px !important;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

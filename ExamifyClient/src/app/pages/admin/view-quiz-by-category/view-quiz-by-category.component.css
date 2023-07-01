@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 500px;
+  }
+  
+  .example-header-image {
+    background-image: url('../../../../assets/7718868.jpg');
+    background-size: cover;
+  }
+
+  mat-card{
+    background-color:rgb(252, 253, 235);
+  }
+  

@@ -18,6 +18,9 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
 import { ShowResultComponent } from './pages/user/show-result/show-result.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { UserHomeComponent } from './pages/user/user-home/user-home.component';
+import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
 
 
 const routes: Routes = [
@@ -71,6 +74,9 @@ const routes: Routes = [
     {
       path:'add-question/:qid/:title',
       component:AddQuestionComponent
+    },{
+      path:'view-quiz-by-category/:cId',
+      component:ViewQuizByCategoryComponent
     }
   ]
 },
@@ -85,8 +91,7 @@ const routes: Routes = [
     {
       path:'instructions/:qId',
       component:InstructionsComponent
-    },
-    
+    }
    ]
 },
 {
@@ -96,6 +101,16 @@ const routes: Routes = [
 },{
   path:'show-result',
   component:ShowResultComponent,
+  pathMatch:'full'
+},
+{
+  path:'user-profile',
+  component:UserProfileComponent,
+  pathMatch:'full'
+},
+{
+  path:'user-home',
+  component:UserHomeComponent,
   pathMatch:'full'
 }
 ];

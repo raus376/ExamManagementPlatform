@@ -32,7 +32,7 @@ export class SignupComponent  implements OnInit {
     //create User function call
     this.userService.addUser(this.User).subscribe(
       (data:any) => {
-        console.log(data);
+        this.resetUser();
         
         Swal.fire(
           'success',
@@ -45,5 +45,17 @@ export class SignupComponent  implements OnInit {
         Swal.fire(error.error.message)
       }
     )
+  }
+
+  public resetUser(){
+    this.User= {
+      uniqueName: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      mobile: '',
+      profile_image:''
+    }
   }
 }

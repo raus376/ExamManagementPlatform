@@ -1,18 +1,28 @@
 <mat-card>
   <mat-list>
-    <div mat-subheader><h1>All Categories</h1></div>
+    <div class="text-center mt20 mb20" mat-subheader><b><h1>All Categories</h1></b></div>
 
   
-    <mat-list>
-     
-      <mat-list-item *ngFor="let c of categories">
-        <mat-icon  matListItemIcon >category</mat-icon>
-        <div matListItemTitle>{{c.title}}</div>
-        <div matListItemLine>{{c.description}}</div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      
-    </mat-list>
+    <div class="grid-container">
+      <div class="grid-item" *ngFor="let q of categories">
+        <mat-card class="mb20">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ q.title }}</mat-card-title>
+            <mat-card-subtitle>{{ q.description }}</mat-card-subtitle>
+          </mat-card-header>
+    
+          <div class="text-center">
+            <mat-card-actions class="grid-container">
+              <button
+             (click)="viewQuiz(q.cid)"
+               mat-raised-button color="primary">View</button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    
     
     <div class="conatiner text-center mt20">
       <button routerLink="/admin/add-category" mat-raised-button color="accent">Add Category</button>

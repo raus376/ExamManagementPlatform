@@ -51,6 +51,7 @@ import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
 import { UpdateProfileComponent } from './pages/admin/update-profile/update-profile.component';
+import { UpdateUserProfileComponent } from './pages/user/update-user-profile/update-user-profile.component';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { UpdateProfileComponent } from './pages/admin/update-profile/update-prof
     UserHomeComponent,
     ViewQuizByCategoryComponent,
     UpdateProfileComponent,
+    UpdateUserProfileComponent,
     
   ],
   imports: [

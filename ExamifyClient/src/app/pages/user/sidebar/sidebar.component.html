@@ -1,21 +1,35 @@
-<mat-card>
+<mat-card class="mat-card-body">
     
     <mat-action-list>
-        <div class="mat-card">
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-content class="center-content">
-              <h2>Available Categories</h2>
-            </mat-card-content>
-          </div>
+      <div class="mat-card">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-content class="center-content">
+          <h2>User Access</h2>
+        </mat-card-content>
+      </div>
           
+      <button routerLink="/user-dashboard/0" mat-list-item>
+        <mat-icon mat-list-icon>badge</mat-icon>
+   Participant </button>
+
+   <button routerLink="/user-profile" mat-list-item>
+    <mat-icon mat-list-icon>person</mat-icon>
+Profile </button>
        
        <button routerLink="/user-dashboard/0" mat-list-item>
-        <mat-icon mat-list-icon>quiz</mat-icon>
+        <mat-icon mat-list-icon>widgets</mat-icon>
    All Quizzes </button>
 
+   <div class="mat-card-categories">
+    <mat-card-content class="center-content-categories">
+      <h2>Categories</h2>
+    </mat-card-content>
+  </div>
+  <div class="scrollable-container">
        <button [routerLink]="'/user-dashboard/'+c.cid" mat-list-item *ngFor="let c of categories">
         <mat-icon mat-list-icon>quiz</mat-icon>
    {{c.title}} </button>
+   </div>
 
 
        <button mat-list-item routerLink="/user/profile">

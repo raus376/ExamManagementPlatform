@@ -1,20 +1,57 @@
-.mat-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .example-header-image {
-    background-image: url('../../../../assets/icons8-category-64.png');
-    background-size: cover;
-  }
-  
-  .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
+.mat-card-body{
+  margin-top:-20px;
+}
 
-  
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:rgba(53, 237, 179, 0.923);
+}
+
+.mat-card-categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:rgba(53, 237, 179, 0.923);
+}
+
+.example-header-image {
+  margin-top: 10px;
+  background-image: url('../../../../assets/icons8-category-64.png');
+  background-size: cover;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: rgb(210, 228, 95);
+}
+
+.center-content h2{
+  margin-top: 10px;
+}
+
+.center-content-categories h2{
+  margin-top: 5px;
+}
+
+.mat-icon{
+  padding-top: 4px;
+  padding-right: 5px;
+}
+
+mat-action-list{
+  background-color: rgb(234, 213, 156);
+}
+
+.scrollable-container {
+  height: 250px; /* Adjust the height as needed */
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+

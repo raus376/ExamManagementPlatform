@@ -21,6 +21,8 @@ import { ShowResultComponent } from './pages/user/show-result/show-result.compon
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
+import { UpdateProfileComponent } from './pages/admin/update-profile/update-profile.component';
+
 
 
 const routes: Routes = [
@@ -77,6 +79,10 @@ const routes: Routes = [
     },{
       path:'view-quiz-by-category/:cId',
       component:ViewQuizByCategoryComponent
+    },
+    {
+      path:'update-profile/:uId',
+      component:UpdateProfileComponent
     }
   ]
 },

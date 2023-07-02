@@ -50,6 +50,8 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
+import { UpdateProfileComponent } from './pages/admin/update-profile/update-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category
     UserNavbarComponent,
     UserProfileComponent,
     UserHomeComponent,
-    ViewQuizByCategoryComponent
+    ViewQuizByCategoryComponent,
+    UpdateProfileComponent,
+    
   ],
   imports: [
     BrowserModule,

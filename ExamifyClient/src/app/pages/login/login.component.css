@@ -1,9 +1,11 @@
 .full-width{
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 mat-card{
-    
+    border-radius: 2.5%;
         background-color:rgb(252, 253, 235);
     
 }

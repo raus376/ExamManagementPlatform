@@ -6,3 +6,16 @@
     background-image: url('../../../../assets/7718868.jpg');
     background-size: cover;
   }
+
+  .scrollable-container {
+    height: 750px; /* Adjust the height as needed */
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .mat-card {
+      padding: 10px;
+    }
+  }

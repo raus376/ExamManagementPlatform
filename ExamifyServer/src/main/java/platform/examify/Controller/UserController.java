@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import platform.examify.Exception.UserException;
 import platform.examify.Service.UserService;
 import platform.examify.model.User;
 
@@ -50,6 +52,15 @@ public class UserController {
 
 		return new ResponseEntity<>(findUser, HttpStatus.ACCEPTED);
 	}
+	
+//	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL')")
+	@GetMapping("/getUserById/{uId}")
+	public ResponseEntity<User> getUser(@PathVariable("uId") Integer uId) throws Exception {
+
+		User findUser = this.userService.getUserById(uId);
+
+		return new ResponseEntity<>(findUser, HttpStatus.ACCEPTED);
+	}
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/deleteUser/{userId}")
@@ -65,5 +76,23 @@ public class UserController {
 	public User currentUser(Principal princple) {
 		return (User) this.userDetailsService.loadUserByUsername(princple.getName());
 	}
+	
+	
+//	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL')")
+	@PutMapping("/update/{role}")
+	public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable String role) throws UserException{
+		
+		try {
+			System.err.println(user.toString());
+			User updatedUser = userService.updateUser(user,role);
+
+			return new ResponseEntity<>(updatedUser, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			throw new UserException(e.getMessage());
+		}
+		
+	}
+	
+	
 
 }

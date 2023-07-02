@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import platform.examify.Config.AppConstant;
+import platform.examify.Exception.CategoryException;
 import platform.examify.Exception.UserException;
 import platform.examify.Repository.RoleRepository;
 import platform.examify.Repository.UserRepository;
@@ -71,10 +72,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User getUserById(Integer uId) throws UserException {
+
+		Optional<User> opt = userRepository.findById(uId);
+
+		if (!opt.isEmpty()) {
+			return opt.get();
+		} else {
+			throw new UserException("User not found with userName: " + uId);
+		}
+	}
+
+	@Override
 	public User deleteUser(Integer userId) throws UserException {
 
 		Optional<User> optUser = userRepository.findById(userId);
-		System.err.println("lksdjf");
+
 		if (!optUser.isEmpty()) {
 			userRepository.deleteById(userId);
 			return optUser.get();
@@ -87,6 +100,34 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
 		return userRepository.findAll();
+	}
+
+	@Override
+	public User updateUser(User user, String role) throws UserException {
+
+		if (user == null) {
+			throw new UserException("User Details Required !");
+		}
+
+		try {
+			System.err.println(role);
+			if (role.equals("ROLE_ADMIN")) {
+				Role roleName = this.roleRepository.findById(AppConstant.ROLE_ADMIN).get();
+
+				user.getRoles().add(roleName);
+			} else {
+				Role roleName = this.roleRepository.findById(AppConstant.ROLE_NORMAL).get();
+
+				user.getRoles().add(roleName);
+			}
+
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			return userRepository.save(user);
+
+		} catch (Exception e) {
+			throw new UserException(e.getMessage());
+		}
+
 	}
 
 }

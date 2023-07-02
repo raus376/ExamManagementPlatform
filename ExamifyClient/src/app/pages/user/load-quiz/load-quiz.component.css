@@ -11,9 +11,31 @@
     background-size: cover;
   }
 
+  .container{
+    margin-top: -20px;
+  }
+
   .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
   }
+
+  mat-card{
+    background-color:rgb(252, 253, 235);
+}
+
+.scrollable-container {
+  height: 750px; /* Adjust the height as needed */
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .mat-card {
+    padding: 10px;
+  }
+}
+
   

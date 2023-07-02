@@ -14,7 +14,7 @@
                 <mat-card *ngIf="user">
                     <!-- Profile details content -->
              
-                    <h1>Your Profile Details</h1>
+                    <h1 class="text-center mt20"><b>Your Profile Details</b></h1>
                 
                     <mat-card-content>
                 
@@ -70,9 +70,13 @@
                         </div>
                 
                     </mat-card-content>
-                    <mat-card-actions class="text-center">
-                        <button mat-raised-button color="primary">Update</button>
-                        <button mat-raised-button color="accent">SHARE</button>
+                    <mat-card-actions class="justify-content-center">
+                        <button
+                        (click)="updateProfile(user.id)"
+                         mat-raised-button color="primary">Update</button>
+                        <button
+                        (click)="printProfile()"
+                         mat-raised-button color="accent">Print</button>
                     </mat-card-actions>
              
              

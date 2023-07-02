@@ -12,6 +12,7 @@
     overflow-y: scroll;
     border: 1px solid #ccc;
     padding: 10px;
+    /* background-color: rgb(202, 106, 124); */
   }
 
   @media only screen and (max-width: 600px) {
@@ -19,3 +20,7 @@
       padding: 10px;
     }
   }
+
+  mat-card{
+    background-color:rgb(252, 253, 235);
+}

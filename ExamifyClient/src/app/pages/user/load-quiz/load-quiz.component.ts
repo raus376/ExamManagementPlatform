@@ -13,7 +13,7 @@ export class LoadQuizComponent implements OnInit{
   categoryId:any;
   quizzes:any;
 
-  constructor(private _route:ActivatedRoute,private _quiz:QuizService){}
+  constructor(private _route:ActivatedRoute,private _quiz:QuizService,private _r:Router){}
 
 
   ngOnInit(): void { 
@@ -44,6 +44,26 @@ export class LoadQuizComponent implements OnInit{
     });
  
    
+  }
+
+
+  public startQuiz(qId:any){
+   
+    Swal.fire({
+      title:'Sure to Start ?',
+      showDenyButton:false,
+      showCancelButton:true,
+      showConfirmButton:true,
+      denyButtonText:'Exit !',
+      icon:'info'
+    }).then((result)=>{
+        
+      if(result.isConfirmed){
+        this._r.navigate(['/start/'+qId]);
+      }else{
+        Swal.fire("Denied !");
+      }
+    })
   }
 
 }

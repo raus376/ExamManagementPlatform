@@ -22,6 +22,7 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
 import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
 import { UpdateProfileComponent } from './pages/admin/update-profile/update-profile.component';
+import { UpdateUserProfileComponent } from './pages/user/update-user-profile/update-user-profile.component';
 
 
 
@@ -97,6 +98,10 @@ const routes: Routes = [
     {
       path:'instructions/:qId',
       component:InstructionsComponent
+    },
+    {
+      path:'update-user-profile/:uId',
+      component:UpdateUserProfileComponent
     }
    ]
 },

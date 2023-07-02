@@ -61,8 +61,10 @@
 
 <mat-card>
     <mat-card-actions class="justify-content-center">
-      <button mat-raised-button  color="primary">Update</button>
-      <button mat-raised-button class="ml20" color="accent">SHARE</button>
+      <button
+      (click)="updateProfile(user.id)"
+       mat-raised-button  color="primary">Update</button>
+      <button (click)="printProfile()" mat-raised-button class="ml20" color="accent">Print</button>
     </mat-card-actions>
   </mat-card>
 

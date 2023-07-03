@@ -1,0 +1,28 @@
+.scrollable-container {
+    height: 700px; 
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-image: url('../../../../assets/Examify_logo.png');
+  }
+.container{
+    background-color:aqua;
+}
+  
+.centered-actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .centered-actions button {
+    margin: 0 10px; 
+    margin-bottom:10px;
+  }
+
+  .centered-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  

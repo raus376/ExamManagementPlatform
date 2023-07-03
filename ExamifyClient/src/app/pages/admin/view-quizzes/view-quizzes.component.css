@@ -8,10 +8,11 @@
   }
 
   .scrollable-container {
-    height: 750px; /* Adjust the height as needed */
+    height: 700px; /* Adjust the height as needed */
     overflow-y: scroll;
     border: 1px solid #ccc;
     padding: 10px;
+    background-image: url('../../../../assets/Examify_logo.png');
     /* background-color: rgb(202, 106, 124); */
   }
 

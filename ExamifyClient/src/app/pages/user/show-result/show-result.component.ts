@@ -38,7 +38,7 @@ export class ShowResultComponent implements OnInit{
     };
   }
 
-  navegateToHomePage(){
+  navigateToHomePage(){
     this._navigateRoute.navigate(['user-dashboard/0']);
   }
 

@@ -1,57 +1,66 @@
-<div class="bootstrap-wrapper">
+<body>
+<div class="scrollable-container">
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <mat-card-header>
-                    <!-- heading -->
-                    <mat-card-title>
-                        <h1>Read the Instructions carefully</h1>
-                    </mat-card-title>
-                    <mat-card-subtitle>
-                        One step more to go
-                    </mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content >
-                    <!-- content -->
-                    {{ quizData?.title }}
-                    <p>{{ quizData?.description }}</p>
+        <div class="card">
+            <h1 class="card-title">Read the Instructions carefully</h1>
+            <h4 class="card-subtitle">One step more to go</h4>
 
-                    <mat-divider></mat-divider>
-                    <br>
-                    <h1>Important Instruction</h1>
+            <mat-divider></mat-divider>
 
-                    <ul>
-                        <li>This quiz is only for practice purpose</li>
-                        <!-- let time of each question is one and a half minutes -->
-                        <li>You have to submit the quiz within time <b>{{ quizData?.numberOfQuestions * 2 }} minutes</b></li>
-                        <li>You can attempt the quiz any number of times</li>
-                        <li>There are <b>{{ quizData?.numberOfQuestions }} questions</b></li>
-                        <li>Each question carries <b>{{ quizData?.maxMarks / quizData?.numberOfQuestions }} Marks</b></li>
-                        <li>There is no negative marking for wrong answers</li>
-                        <li>All questions are of MCQ type</li>
-                    </ul>
-                    <mat-divider></mat-divider>
-                    <br>
-                    <h1>Attempting Quiz</h1>
-                    <ul>
-                        <li>Click <b>Start Quiz</b> button to start the quiz</li>
-                        <li>The time will start the moment you click the Start Test button</li>
-                        <li>You cannot resume this quiz if interrupted due to any reason</li>
-                        <li>Scroll down to move to the next question.</li>
-                        <li>Click on the Submit button on completion of the quiz</li>
-                        <li>A report of the test is automatically generated in the form of a PDF copy</li>
-                    </ul>
-                </mat-card-content>
-              
-                <mat-card-actions class="mt20">
-                    <!-- action -->
-                    <button (click)="startQuiz()"
-                     mat-raised-button color="accent" style="margin: 0 auto;">Start Quiz</button>
-                </mat-card-actions>
+            <h1 class="text-center mt20">Quiz Title: {{ quizData?.title }}</h1>
+            <h1 class="text-center">Quiz Description: {{ quizData?.description }}</h1>
+
+            <mat-divider></mat-divider>
+            <div class="instruction-list">
+                <h2>Important Instructions</h2>
+                <ul>
+                    <li>This quiz is for practice purposes only.</li>
+                    <li>You must submit the quiz within <b>{{ quizData?.numberOfQuestions * 2 }} minutes</b>.</li>
+                    <li>You can attempt the quiz multiple times.</li>
+                    <li>There are <b>{{ quizData?.numberOfQuestions }} questions</b> in total.</li>
+                    <li>Each question carries <b>{{ quizData?.maxMarks / quizData?.numberOfQuestions }} marks</b>.</li>
+                    <li>There is no penalty for wrong answers.</li>
+                    <li>All questions are multiple-choice questions (MCQ).</li>
+                </ul>
             </div>
+            
+            <div class="instruction-list">
+                <h2>Quiz Attempt Guidelines</h2>
+                <ul>
+                    <li>To begin the quiz, click the <b>Start Quiz</b> button.</li>
+                    <li>The timer will start as soon as you click the Start Quiz button.</li>
+                    <li>You cannot resume the quiz if interrupted for any reason.</li>
+                    <li>Scroll down to navigate to the next question.</li>
+                    <li>Click the Submit button to complete the quiz.</li>
+                    <li>A PDF report of your test will be generated automatically.</li>
+                </ul>
+            </div>
+            
 
+            <div class="instruction-list">
+                <h2>General Instructions</h2>
+                <ul>
+                    <li>Ensure you have a stable internet connection before starting the quiz.</li>
+                    <li>Use a compatible web browser for the best experience.</li>
+                    <li>Close any unnecessary applications or browser tabs to optimize your device's performance during the quiz.</li>
+                    <li>Do not refresh the page or navigate away from the quiz while attempting it.</li>
+                    <li>Pay attention to the time remaining and manage your time effectively to complete all the questions.</li>
+                    <li>Read each question carefully and consider all options before selecting your answer.</li>
+                    <li>If you're unsure about an answer, you can skip the question and come back to it later if time allows.</li>
+                    <li>Double-check your selected answers before submitting the quiz.</li>
+                    <li>Do not engage in any form of cheating or plagiarism. The purpose of this quiz is to test your knowledge and understanding.</li>
+                    <li>Respect the honor code and academic integrity policies of your institution while taking the quiz.</li>
+                    <li>Contact the quiz administrator or instructor if you encounter any technical issues or have any questions.</li>
+                </ul>
+            </div>
+            
+            <button
+            (click)="startQuiz()"  style="display: flex; justify-content: center;"
+           mat-raised-button color="accent">Start</button>
             
         </div>
-        
     </div>
+
 </div>
+</body>

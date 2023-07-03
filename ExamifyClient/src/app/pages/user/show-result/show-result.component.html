@@ -1,48 +1,51 @@
-<!-- <app-navbar></app-navbar> -->
-<div class="container mt20">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-md-6">
-        <mat-card>
-          <mat-card-header>
-            
-          </mat-card-header>
-  
-          <mat-card-content class="text-center">
-            <mat-card-title class="text-center">
-               <h1><b>Quiz Result</b></h1> 
-               <h1>Attempted: <b>{{resultData.quizTitle}}</b></h1> 
-              </mat-card-title>
-              <mat-divider></mat-divider>
-              <h1>Total Questions: {{ resultData.totalQuestions }}</h1>
-              <h1>Total Marks: {{ resultData.totalMarks }}</h1>
-            <h1>Marks Obtained: {{ resultData.marksObtained }}</h1>
-            <h1>Correct Answers: {{ resultData.correctAns }}</h1>
-            <h1>Question Attempted: {{ resultData.totalAttempted }}</h1>
-          </mat-card-content>
-       
-        </mat-card>
-
-       
-      </div>
-    </div>
-  </div>
-
+<body>
   <div class="container">
-  <div class="row justify-content-center align-items-center">
-    <div class="mat-card">
-      <div>
-        <mat-card-actions class="d-flex justify-content-center">
-          <button
-(click)="printPage()"
-           mat-raised-button class="mr20" color="accent">Print</button>
-          <button
-          (click)="navegateToHomePage()"
-           mat-raised-button color="primary">Home</button>
-        </mat-card-actions>
+    <div class="result-card">
+      <div class="result-card-header">
+        <h1>Quiz Result</h1>
+        <h2>Attempted: <b>{{resultData.quizTitle}}</b></h2>
+      </div>
+      <div class="result-card-content">
+        <div class="result-block">
+          <h3>Total Questions: <b>{{resultData.totalQuestions}}</b></h3>
+          <p></p>
+        </div>
+        <div class="result-block">
+          <h3>Total Marks: <b>{{resultData.totalMarks}}</b></h3>
+
+        </div>
+        <div class="result-block">
+          <h3>Marks Obtained: <b>{{resultData.marksObtained}}</b></h3>
+          <p></p>
+        </div>
+        <div class="result-block">
+          <h3>Correct Answers: <b>{{resultData.correctAns}}</b></h3>
+          <p></p>
+        </div>
+        <div class="result-block">
+          <h3>Questions Attempted: <b>{{resultData.totalAttempted}}</b></h3>
+          <p></p>
+        </div>
       </div>
     </div>
+
+    <div class="result-card-actions">
+      <button mat-raised-button (click)="printPage()" class="mb20 mr20" color="accent">Print</button>
+      <button mat-raised-button (click)="navigateToHomePage()" color="primary">Home</button>
+    </div>
   </div>
-</div>
-  
-  
-  
+
+  <div class="container additional-content text-center mt20">
+    <h2>Additional Content</h2>
+    <p>Congratulations on completing the quiz! Your result has been successfully calculated and displayed above. Here are a few suggestions for further exploration:</p>
+    <ul>
+      <li>Review your answers and the correct answers to enhance your understanding.</li>
+      <li>Identify areas for improvement based on your performance.</li>
+      <li>Share your achievements with friends and challenge them to beat your score.</li>
+      <li>Explore more quizzes on different subjects to broaden your knowledge.</li>
+    </ul>
+    <p>Remember, every quiz is an opportunity for growth. Keep up the great work and continue your learning journey!</p>
+  </div>
+
+ 
+</body>

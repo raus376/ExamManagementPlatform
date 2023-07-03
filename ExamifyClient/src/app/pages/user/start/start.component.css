@@ -1,0 +1,19 @@
+.scrollable-container {
+    height: 650px; /* Adjust the height as needed */
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+background-color:   #666666;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .bootstrap-wrapper{
+    margin-top:-10px;
+  }
+
+  .instruction-list {
+    max-height: 650px;
+    overflow-y: auto;
+}

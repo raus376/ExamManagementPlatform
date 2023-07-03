@@ -7,18 +7,29 @@
 
             <div class="col-md-2 mt20">
                 <!-- insturction  -->
-             <mat-card>
-                <mat-card-content>
-                    <h2><b>Instructions</b></h2>
-                    <ul>
-                     <li>
-                         Do not referesh the page, otherwise you will get new questions
-                     </li>
-                     <li>Do not switch the tabs, otherwise you will disqualify</li>
-                     <li>Do not minimize the tabs, otherwise you will disqualify</li>
-                    </ul>
-                </mat-card-content>
-             </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <h2><b>Instructions</b></h2>
+                        <div class="instruction-list">
+                            <ul>
+                                <li>Follow these instructions carefully to ensure a smooth experience:</li>
+                                <li>Do not refresh the page; doing so will provide you with new questions.</li>
+                                <li>Stay on this tab throughout the activity to avoid disqualification.</li>
+                                <li>Do not minimize the browser window; it may result in disqualification.</li>
+                                <li>Complete the task within the allocated time limit.</li>
+                                <li>Ensure a stable internet connection to prevent any interruptions.</li>
+                                <li>Read each question thoroughly before providing your response.</li>
+                                <li>Submit your answers within the specified format, if required.</li>
+                                <li>Feel free to ask for clarification if any instructions are unclear.</li>
+                                <li>Take your time and think before answering each question.</li>
+                                <li>Remember, there are no right or wrong answers; your insights matter.</li>
+                                <li>Keep a positive attitude and enjoy the activity!</li>
+                            </ul>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                
+                
                         </div>
                         <div class="col-md-8">
                 
@@ -29,7 +40,7 @@
                                 
                                
                             </ng-container>
-
+                            <div class="scrollable-container">
                             <mat-card *ngFor="let q of questions;let i=index" class="mt10">
                             
                                 <mat-card-content>
@@ -79,10 +90,11 @@
                             </mat-card-content>
                                
                             </mat-card>
+                            </div>
 
                             <div class="container text-center mt20">
-                                <button (click)="submitQuiz()"
-                                 mat-raised-button color="accent">Submit</button>
+                                <button (click)="submitQuiz()" 
+                                mat-raised-button color="accent">Submit</button>
                             </div>
                         </div>
                         <div class="col-md-2 mt20">

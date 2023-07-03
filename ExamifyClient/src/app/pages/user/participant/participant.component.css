@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../../../../assets/Examify_logo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top:-20px
+  }
+
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .mat-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    max-width: auto;
+    width: 100%;
+    padding: 20px;
+    height: auto;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .mat-card-content {
+    padding: 20px;
+  }
+
+  .eximify-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  p {
+    text-align: justify;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  /* ul {
+    font-weight: bold;
+    font-size: 18px;
+  } */
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 32px;
+  }
+
+  h2 {
+    color: #666;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 5px;
+    font-size: 20px;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 10px;
+    height: 10px;
+    background-color: #666;
+    border-radius: 50%;
+  }
+
+  ul ul {
+    margin-top: 5px;
+    margin-left: 20px;
+  }
+  
+  .scrollable-container {
+    height: 780px; /* Adjust the height as needed */
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .mat-card {
+      padding: 10px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  
+

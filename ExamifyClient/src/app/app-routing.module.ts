@@ -23,6 +23,7 @@ import { UserHomeComponent } from './pages/user/user-home/user-home.component';
 import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category/view-quiz-by-category.component';
 import { UpdateProfileComponent } from './pages/admin/update-profile/update-profile.component';
 import { UpdateUserProfileComponent } from './pages/user/update-user-profile/update-user-profile.component';
+import { ParticipantComponent } from './pages/user/participant/participant.component';
 
 
 
@@ -122,6 +123,11 @@ const routes: Routes = [
 {
   path:'user-home',
   component:UserHomeComponent,
+  pathMatch:'full'
+},
+{
+  path:'participant',
+  component:ParticipantComponent,
   pathMatch:'full'
 }
 ];

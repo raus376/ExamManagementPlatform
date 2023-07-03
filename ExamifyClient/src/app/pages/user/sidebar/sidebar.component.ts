@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ export class SidebarComponent implements OnInit{
   
   categories:any;
 
-  constructor(private _category:CategoryService,private login:LoginService){}
+  constructor(private _category:CategoryService,private login:LoginService,private _route:Router){}
   
   ngOnInit(): void { 
     this._category.category().subscribe((data)=>{
@@ -59,8 +60,11 @@ this.categories=data;
     
       
     });
-   
+  
+}
 
+participant(){
+  this._route.navigate(['/participant']);
 }
 
 

@@ -24,6 +24,7 @@ import { ViewQuizByCategoryComponent } from './pages/admin/view-quiz-by-category
 import { UpdateProfileComponent } from './pages/admin/update-profile/update-profile.component';
 import { UpdateUserProfileComponent } from './pages/user/update-user-profile/update-user-profile.component';
 import { ParticipantComponent } from './pages/user/participant/participant.component';
+import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 
 
 
@@ -85,6 +86,10 @@ const routes: Routes = [
     {
       path:'update-profile/:uId',
       component:UpdateProfileComponent
+    },
+    {
+      path:'update-question/:qId',
+      component:UpdateQuestionComponent
     }
   ]
 },

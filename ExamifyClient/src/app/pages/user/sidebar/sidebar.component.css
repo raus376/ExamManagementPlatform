@@ -54,4 +54,17 @@ mat-action-list{
   padding: 10px;
 }
 
+.scrollable-container {
+  height: 250px; /* Adjust the height as needed */
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+} 
+
+/* 
+.scrollable-container::-webkit-scrollbar {
+  width: 8px; 
+  background-color: #5d3d3dda;
+} */
+
 

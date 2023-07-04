@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestionsService } from 'src/app/services/quiz-questions.service';
 import Swal from 'sweetalert2';
 
@@ -14,7 +14,7 @@ export class ViewQuizQuestionsComponent implements OnInit{
   qTitle:any;
   question:any=[];
 
-  constructor(private _route:ActivatedRoute,private _quizQuestion:QuizQuestionsService){ }
+  constructor(private _route:ActivatedRoute,private _quizQuestion:QuizQuestionsService,private _navigateRoute:Router){ }
 
   ngOnInit(): void {
     this.qId=this._route.snapshot.params['qid'];
@@ -56,4 +56,8 @@ export class ViewQuizQuestionsComponent implements OnInit{
     })
   }
 
+
+  updateQuestion(qId:any){
+    this._navigateRoute.navigate(['admin/update-question',qId]);
+   }
 }

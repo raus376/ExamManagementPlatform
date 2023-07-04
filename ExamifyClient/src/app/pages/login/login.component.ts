@@ -45,14 +45,19 @@ export class LoginComponent implements OnInit {
               this.login.getCurrentUser().subscribe(
                 (user: any) => {
                   this.login.setUser(user);
+                  // console.log(this.login.getUserRole());
                   //redirect to specific role authentication
-                  if (this.login.getUserRole() == 'ROLE_ADMIN') {
+                  if (this.login.getUserRole() == 'ROLE_ADMIN' || this.login.getUserRole()=='ROLE_ORGANIZATION') {
                     // redirect to Admin page
-                    this.router.navigate(['admin']);
+                    // this.router.navigate(['admin']);
+                    //redirect to home page
+                    this.router.navigate(['']);
                     this.login.loginStatusSubject.next(true);
                   } else if (this.login.getUserRole() == 'ROLE_NORMAL') {
                     // redirect to User page
-                    this.router.navigate(['user-dashboard/0']);
+                    // this.router.navigate(['user-dashboard/0']);
+                    //navigate to user-home page
+                    this.router.navigate(['/user-home']);
                     this.login.loginStatusSubject.next(true);
                   } else {
                     //logout
@@ -70,13 +75,17 @@ export class LoginComponent implements OnInit {
                 (user: any) => {
                   this.login.setUser(user);
                   //redirect to specific role authentication
-                  if (this.login.getUserRole() == 'ROLE_ADMIN') {
+                  if (this.login.getUserRole() == 'ROLE_ADMIN' || this.login.getUserRole()=='ROLE_ORGANIZATION') {
                     // redirect to Admin page
-                    this.router.navigate(['admin']);
+                    // this.router.navigate(['admin']);
+                    //redirect to home page
+                    this.router.navigate(['']);
                     this.login.loginStatusSubject.next(true);
                   } else if (this.login.getUserRole() == 'ROLE_NORMAL') {
                     // redirect to User page
-                    this.router.navigate(['user-dashboard/0']);
+                    // this.router.navigate(['user-dashboard/0']);
+                    //navigate to user-home page
+                    this.router.navigate(['/user-home']);
                     this.login.loginStatusSubject.next(true);
                   } else {
                     //logout

@@ -12,7 +12,7 @@
                     <img src="../../../assets/logo.jpg" style="width: 100%; height: 100%;">
                 </div>
 
-
+          
                 <h1 class="text-center">Register Here !!</h1>
 
                 <form (ngSubmit)="formSubmit()">
@@ -58,10 +58,31 @@
                         <input required [(ngModel)]="User.mobile" name="mobile"
                          type="number" matInput placeholder="Enter Your Mobile Number">
                     </mat-form-field>
+                    
+                    <div class="text-center mb20">
+                        <mat-slide-toggle 
+                        name="roleUser"
+                        *ngIf="role !== 'USER'"
+                        [ngModel]="role === 'ORGANIZATION'"
+                        (ngModelChange)="updateRole($event ? 'ORGANIZATION' : '')"
+                        style="margin-right: 20px;">
+                        Organization
+                      </mat-slide-toggle>
+                      
+                      <mat-slide-toggle
+                        name="roleOrganzation"
+                        *ngIf="role !== 'ORGANIZATION'"
+                        [ngModel]="role === 'USER'"
+                        (ngModelChange)="updateRole($event ? 'USER' : '')">
+                        Participant
+                      </mat-slide-toggle>
+                    </div>
+                    
                     <div class="container text-center mb20">
                         <button type="submit" mat-raised-button color="primary">Register</button>
                         <button (click)="resetUser()" style="margin-left: 50px;" mat-raised-button color="accent">Reset</button>
                     </div>
+                    
 
                 </form>
             </mat-card>

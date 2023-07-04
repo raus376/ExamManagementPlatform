@@ -1,0 +1,168 @@
+.app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin-top: 55px;
+  }
+  
+
+  .container {
+    background-image: url('../../../assets/Examify_logo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.8); /* Added transparency */
+    border-radius: 8px;
+    padding-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-top: 0;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  h3 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff; 
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+mat-card{
+  background-color:   rgba(255, 255, 255, 0.7);
+  width:80%;
+  text-align: center;
+  margin: 0 auto;
+}
+  .card {
+    position: relative;
+    background-color:  rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .card-body h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .card-body p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .card-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card-body ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Icon Styles */
+  .fa {
+    font-size: 4rem;
+    color: #007bff;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 767px) {
+    h1 {
+      font-size: 24px;
+    }
+  
+    h3 {
+      font-size: 20px;
+    }
+  
+    .fa {
+      font-size: 3rem;
+    }
+  
+    .btn {
+      font-size: 14px;
+    }
+  }
+  
+  /* Grid Styles */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 30px;
+    justify-content: center;
+    height: 790px;
+  }
+  
+  .col-md-6 {
+    flex-basis: 40%;
+    max-width: 40%;
+  }
+  
+  /* Custom Styles */
+  .feature-section {
+    margin-top: 30px;
+  }
+  
+  .card-feature {
+    min-height: 320px;
+  }
+  
+  .card-feature .card-body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .card-feature .fa {
+    margin-bottom: 15px;
+  }
+  
+  .mt-20 {
+    margin-top: 20px;
+  }
+  
+  .mt40 {
+    margin-top: 50px;
+  }
+  

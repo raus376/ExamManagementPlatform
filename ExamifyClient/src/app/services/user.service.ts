@@ -15,6 +15,10 @@ export class UserService implements OnInit{
    return this.http.post(`${baseUrl}/auth/register`,user)
   }
 
+  public addUserRoleBased(user: any,role:any) {
+    return this.http.post(`${baseUrl}/auth/role/register/${role}`,user)
+   }
+
   public updateUser(user:any,role:any){
     return this.http.put(`${baseUrl}/user/update/${role}`,user)
   }

@@ -33,6 +33,12 @@ export class StartComponent implements OnInit {
     this.preventBackButton();
     this.qId = this._route.snapshot.params['qId'];
     this.loadQuestion();
+
+    // window.addEventListener('beforeunload', (event) => {
+      
+    //   event.preventDefault();
+    //   event.returnValue = ''; 
+    // });
   }
 
   loadQuestion() {

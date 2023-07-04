@@ -39,7 +39,7 @@ export class ShowResultComponent implements OnInit{
   }
 
   navigateToHomePage(){
-    this._navigateRoute.navigate(['user-dashboard/0']);
+    this._navigateRoute.navigate(['/user-home']);
   }
 
 }

@@ -40,7 +40,9 @@
                     </mat-card-content>
 
                   <mat-card-actions class="centered-actions">
-                    <button mat-raised-button color="primary">Update</button>
+                    <button
+                    (click)="updateQuestion(q.quesId)"
+                     mat-raised-button color="primary">Update</button>
                     <button (click)="deleteQuestion(q.quesId)" mat-raised-button color="warn">Delete</button>
                   </mat-card-actions>
 

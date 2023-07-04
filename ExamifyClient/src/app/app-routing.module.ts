@@ -38,6 +38,11 @@ const routes: Routes = [
   component:SignupComponent,
   pathMatch:'full',
 },
+{path:'signup/:role',
+component:SignupComponent,
+pathMatch:'full',
+}
+,
 {
   path:'login',
   component:LoginComponent,

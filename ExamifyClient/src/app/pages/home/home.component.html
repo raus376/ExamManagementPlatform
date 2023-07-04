@@ -1,11 +1,79 @@
-<app-navbar></app-navbar>
-<div class="bootstrap-wrapper">
+
+<app-navbar class="app-navbar"></app-navbar>
+<body>
     <div class="container">
-        <div class="row mt20">
-            <div class="col-md-6 offset-md-3 text-center">
-                <h1>Welcome to Examify</h1>
-                <button mat-raised-button color="accent">Welcome to Examify</button>
+      <div class="text-center">
+        <mat-card>
+        <h1 style="color: #640707; margin-top: 20px;">Welcome to Examify</h1>
+        <p style="margin-bottom: 20px;">Admins/Organizations can conduct exams, and participants can sign up and appear for exams on Examify - the leading exam conducting portal.</p>
+    </mat-card>
+     <button
+     (click)="navigateToAdminPage()"
+      style="margin-top: 20px;" *ngIf="user" class="btn btn-primary">Get Started</button>
+      </div>
+  
+      <div class="row">
+
+        
+        <div *ngIf="!user"  class="col-md-6">
+            <div class="card card-feature">
+              <div class="card-body">
+                <i class="fa fa-user-plus"></i>
+                <h3>Sign Up</h3>
+                <p>SignUp as an Admin/Organization</p>
+                <mat-divider class="mt20"></mat-divider>
+                <p class="mt20">Admins/Organizations can start conducting exams with Examify today, while participants can sign up, access exams, and showcase their skills and knowledge.</p>
+                <button
+                (click)="roleDefine('ORGANIZATION')"
+                 class="btn btn-primary mt40" mat-raised-button color="accent">Sign Up</button>
+              </div>
             </div>
+          </div>
+    
+          <div *ngIf="!user" class="col-md-6">
+            <div class="card card-feature">
+              <div class="card-body">
+                <i class="fa fa-user-plus"></i>
+                <h3>Sign Up</h3>
+                <p>SignUp as a Participant</p>
+                <mat-divider class="mt20"></mat-divider>
+                <p class="mt20">Participants can sign up for Examify to access a wide range of exams and showcase their skills and knowledge. Join Examify today and start your exam journey.</p>
+                <button
+                (click)="roleDefine('USER')"
+                 class="btn btn-primary mt40" mat-raised-button color="accent">Sign Up</button>
+              </div>
+            </div>
+          </div>
+
+
+        <div class="col-md-6">
+          <div class="card card-feature">
+            <div class="card-body">
+              <i class="fa fa-book"></i>
+              <h3>About Examify</h3>
+              <p>Examify is a state-of-the-art platform designed for admins/organizations to conduct exams efficiently and securely. It provides a user-friendly interface, real-time proctoring, and comprehensive exam management tools. Participants can easily sign up, access exams, and showcase their knowledge.</p>
+            </div>
+          </div>
         </div>
+  
+        <div class="col-md-6">
+          <div class="card card-feature">
+            <div class="card-body">
+              <i class="fa fa-check"></i>
+              <h3>Features</h3>
+              <p>
+                Secure online exam environment,
+                Real-time proctoring and monitoring
+                ,Customizable exam settings
+                Automated grading and result generation
+                Intuitive exam analytics and reporting
+            </p>
+            </div>
+          </div>
+        </div>
+  
+        
+      </div>
     </div>
-</div>
+  </body>
+  

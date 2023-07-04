@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -8,7 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent  implements OnInit {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private _activatedRoute:ActivatedRoute) { }
+
+  role:any;
+
+  defineRole:any;
 
   public User = {
     uniqueName: '',
@@ -20,7 +25,11 @@ export class SignupComponent  implements OnInit {
     profile_image:''
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+   
+    this.role=this._activatedRoute.snapshot.params['role'];
+    console.log(this.role);
+  }
 
   formSubmit() {
 
@@ -29,22 +38,47 @@ export class SignupComponent  implements OnInit {
       return;
     }
 
-    //create User function call
-    this.userService.addUser(this.User).subscribe(
+    if(this.role=='' || this.role==null){
+      Swal.fire("Please select your role !");
+      return;
+    }
+
+    this.userService.addUserRoleBased(this.User,this.role).subscribe(
       (data:any) => {
-        this.resetUser();
+        
         
         Swal.fire(
           'success',
           'Register Successfully',
           'success'
-        )
+        ).then(()=>{
+          this.resetUser();
+          window.location.href = '/login'
+        })
+       
       },
       (error) => {
         console.log(error.error);
         Swal.fire(error.error.message)
       }
     )
+
+    //create User function call
+    // this.userService.addUser(this.User).subscribe(
+    //   (data:any) => {
+    //     this.resetUser();
+        
+    //     Swal.fire(
+    //       'success',
+    //       'Register Successfully',
+    //       'success'
+    //     )
+    //   },
+    //   (error) => {
+    //     console.log(error.error);
+    //     Swal.fire(error.error.message)
+    //   }
+    // )
   }
 
   public resetUser(){
@@ -57,5 +91,9 @@ export class SignupComponent  implements OnInit {
       mobile: '',
       profile_image:''
     }
+  }
+
+  updateRole(role: string) {
+    this.role = role;
   }
 }

@@ -71,7 +71,7 @@ public class UserController {
 		return new ResponseEntity<>(deletedUser, HttpStatus.ACCEPTED);
 	}
 
-	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/current-user")
 	public User currentUser(Principal princple) {
 		return (User) this.userDetailsService.loadUserByUsername(princple.getName());

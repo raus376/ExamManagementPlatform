@@ -28,12 +28,16 @@ public class ExamifyApplication implements CommandLineRunner {
 			Role admin = new Role();
 			admin.setRoleId(AppConstant.ROLE_ADMIN);
 			admin.setRoleName("ROLE_ADMIN");
+			
+			Role organization = new Role();
+			organization.setRoleId(AppConstant.ROLE_ORGANIZATION);
+			organization.setRoleName("ROLE_ORGANIZATION");
 
 			Role user = new Role();
 			user.setRoleId(AppConstant.ROLE_NORMAL);
 			user.setRoleName("ROLE_NORMAL");
 
-			List<Role> roles = List.of(admin, user);
+			List<Role> roles = List.of(admin,organization, user);
 
 			List<Role> savedRoles = this.roleRepository.saveAll(roles);
 

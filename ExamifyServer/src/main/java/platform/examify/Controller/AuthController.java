@@ -2,7 +2,6 @@ package platform.examify.Controller;
 
 import java.security.Principal;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,6 +67,14 @@ public class AuthController {
 		return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
 
 	}
+	
+	@PostMapping("/role/register/{role}")
+	public ResponseEntity<User> createUserRoleBased(@RequestBody User user,@PathVariable("role") String role) throws Exception {
+
+		User createdUser = this.userService.createUserRoleBased(user,role);
+		return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
+
+	}
 
 	private void doAuthenticate(String email, String password) {
 
@@ -91,7 +99,7 @@ public class AuthController {
 		return principle.getName();
 	}
 
-	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/current-user")
 	public User currentUser(Principal princple) {
 		return (User) this.userDetailsService.loadUserByUsername(princple.getName());

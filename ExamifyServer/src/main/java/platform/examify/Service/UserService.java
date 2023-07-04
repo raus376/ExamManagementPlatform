@@ -10,6 +10,8 @@ public interface UserService {
 	public User registerUser(User user) throws Exception;
 
 	public User createUser(User user) throws Exception;
+	
+	public User createUserRoleBased(User user,String role) throws Exception;
 
 	public User getUser(String userName) throws UserException;
 	

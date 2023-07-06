@@ -104,5 +104,10 @@ public class AuthController {
 	public User currentUser(Principal princple) {
 		return (User) this.userDetailsService.loadUserByUsername(princple.getName());
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,7 @@ export class ViewQuizzesComponent implements OnInit{
   quizzes:any=[];
  
  
-  constructor(private _quiz:QuizService,private _router:Router){}
+  constructor(private _quiz:QuizService,private _router:Router,private _login:LoginService){}
   ngOnInit(): void {
    this._quiz.quizzes().subscribe((data:any)=>{
     this.quizzes=data;
@@ -32,8 +33,20 @@ export class ViewQuizzesComponent implements OnInit{
     }).then((result)=>{
 
       if(result.isConfirmed){
+
+          //checking role for deleting quiz
+          if (this._login.getUserRole() == 'ROLE_NORMAL' || this._login.getUserRole()=='ROLE_ORGANIZATION') {
+            Swal.fire({
+              title: 'You Logged as an Organization, You are not authorize to delete quiz ! For more Connect Admin => raushan376kumar@gmail.com',
+              icon: 'error',
+              showConfirmButton: true,
+              timer: 20000 // 4 seconds
+            })
+            return;
+          }
+
         this._quiz.deleteQuiz(qId).subscribe((data:any)=>{
-         
+
           Swal.fire({
             title: 'Quiz Deleted Successfully',
             icon: 'success',

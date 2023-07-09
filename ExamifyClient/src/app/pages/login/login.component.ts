@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  showPassword=true;
   loginData = {
     "email": '',
     "password": ''
@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit {
                   }
                 },
                 (error) => {
-                  console.log(JSON.stringify(error))
+                  // Swal.fire("lksjdf")
+                  console.log(error);
                 }
               )
             } else {
@@ -94,13 +95,20 @@ export class LoginComponent implements OnInit {
                 },
                 (error) => {
                   console.log(JSON.stringify(error))
+                  // Swal.fire(error.error.text);
                 }
               )
             }
           });
         },
         (error) => {
-          Swal.fire(error.error.text)
+          console.log(error);
+          if(error.error.description!='Credentials Invalid !!'){
+            Swal.fire(error.error.text);
+          }else{
+            Swal.fire(error.error.description)
+          }
+         
         }
       )
     }

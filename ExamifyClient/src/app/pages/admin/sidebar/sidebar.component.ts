@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class SidebarComponent implements OnInit{
  
-  constructor(private login:LoginService){};
+  constructor(private login:LoginService,private _route:Router){};
 
   ngOnInit(): void {};
 
@@ -33,9 +34,9 @@ export class SidebarComponent implements OnInit{
             timer: 6000 // 2 seconds
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = '/login'; // Redirect to the '/login' page
+              this._route.navigate(['login']);
             }else{
-              window.location.href = '/login'; // Redirect to the '/login' page
+              this._route.navigate(['login']);
             }
           });
         }else{

@@ -26,10 +26,16 @@
 
                     <!-- user_password field -->
                     <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>User Password</mat-label>
-                        <input required [(ngModel)]="User.password" name="password"
-                         type="password" matInput placeholder="Enter Your Password">
-                    </mat-form-field>
+                        <mat-label>Password must combination of Uppercase,Lowercase,number and special Character</mat-label>
+                        <input required [(ngModel)]="User.password" name="password" matInput 
+                          [type]="showPassword ? 'text' : 'password'" placeholder="Enter Your Password">
+                        <button mat-icon-button matSuffix type="button" (click)="showPassword = !showPassword" 
+                          [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                      </mat-form-field>
+                      
+                      
 
                     <!-- first Name field -->
                     <mat-form-field class="full-width" appearance="outline">
@@ -55,9 +61,11 @@
                     <!-- Phone field -->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Mobile Number</mat-label>
-                        <input required [(ngModel)]="User.mobile" name="mobile"
-                         type="number" matInput placeholder="Enter Your Mobile Number">
-                    </mat-form-field>
+                        <input required [(ngModel)]="User.mobile" name="mobile" 
+                        type="number"  pattern="[0-9]{10}" matInput placeholder="Enter Your Mobile Number">
+                        <mat-error *ngIf="mobileFieldInvalid()">Mobile number must be 10 digits</mat-error>
+                      </mat-form-field>
+                      
                     
                     <div class="text-center mb20">
                         <mat-slide-toggle 

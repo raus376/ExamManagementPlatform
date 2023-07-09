@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -9,9 +9,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent  implements OnInit {
-  constructor(private userService: UserService,private _activatedRoute:ActivatedRoute) { }
+  constructor(private userService: UserService,private _activatedRoute:ActivatedRoute,private _routed:Router) { }
 
   role:any;
+  showPassword=true;
 
   defineRole:any;
 
@@ -43,6 +44,17 @@ export class SignupComponent  implements OnInit {
       return;
     }
 
+    if(this.User.password=='' || this.User.password==null){
+      Swal.fire("Password Required !");
+      return;
+    }else{
+      if(!this.validatePassword(this.User.password)){
+        Swal.fire("Password should contains atleast one Uppercase, one Lowercase, one number and one special Character !")
+      return;
+      }
+      
+    }
+
     this.userService.addUserRoleBased(this.User,this.role).subscribe(
       (data:any) => {
         
@@ -53,13 +65,13 @@ export class SignupComponent  implements OnInit {
           'success'
         ).then(()=>{
           this.resetUser();
-          window.location.href = '/login'
+          this._routed.navigate(['login']);
         })
        
       },
       (error) => {
-        console.log(error.error);
-        Swal.fire(error.error.message)
+        console.log(error)
+        Swal.fire(error.error.description)
       }
     )
 
@@ -95,5 +107,15 @@ export class SignupComponent  implements OnInit {
 
   updateRole(role: string) {
     this.role = role;
+  }
+
+ validatePassword(password: string): boolean {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{4,}$/;
+    return regex.test(password);
+  }
+
+  mobileFieldInvalid(): boolean {
+    const mobilePattern = /[0-9]{10}/;
+    return !mobilePattern.test(this.User.mobile);
   }
 }

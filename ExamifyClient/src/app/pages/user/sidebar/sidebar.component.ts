@@ -45,9 +45,9 @@ this.categories=data;
             timer: 6000 // 2 seconds
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = '/login'; // Redirect to the '/login' page
+              this._route.navigate(['login']);
             }else{
-              window.location.href = '/login'; // Redirect to the '/login' page
+              this._route.navigate(['login']);
             }
           });
         }else{

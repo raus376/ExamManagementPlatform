@@ -30,7 +30,7 @@ public class QuizController {
 	@Autowired
 	private QuizService quizService;
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ORGANIZATION')")
 	@PostMapping("/create")
 	public ResponseEntity<Quiz> addQuiz(@RequestBody Quiz quiz) throws QuizException {
 
@@ -47,6 +47,7 @@ public class QuizController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/get/{quizId}")
 	public ResponseEntity<Quiz> getQuiz(@PathVariable("quizId") Integer quizId) throws QuizException {
 
@@ -64,6 +65,7 @@ public class QuizController {
 
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/getAll")
 	public ResponseEntity<Set<Quiz>> getAllQuiz() throws QuizException {
 
@@ -75,7 +77,7 @@ public class QuizController {
 		}
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ORGANIZATION')")
 	@PutMapping("/update")
 	public ResponseEntity<Quiz> updateQuiz(@RequestBody Quiz quiz) throws QuizException {
 
@@ -88,6 +90,7 @@ public class QuizController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete/{quizId}")
 	public ResponseEntity<Quiz> deleteCategory(@PathVariable("quizId") Integer quizId) throws QuizException {
 
@@ -105,7 +108,7 @@ public class QuizController {
 
 	}
 
-
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/getActive")
 	public ResponseEntity<Set<Quiz>> getActiveQuizzes() throws QuizException {
 
@@ -117,6 +120,7 @@ public class QuizController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/active/category/{cId}")
 	public ResponseEntity<?> getActiveQuizOfCategory(@PathVariable("cId") Integer cId) throws QuizException {
 
@@ -134,6 +138,7 @@ public class QuizController {
 
 	}
 	
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/category/{cId}")
 	public ResponseEntity<?> getQuizByCategory(@PathVariable("cId") Integer cId) throws QuizException {
 

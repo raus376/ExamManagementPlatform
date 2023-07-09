@@ -28,7 +28,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ORGANIZATION')")
 	@PostMapping("/create")
 	public ResponseEntity<Category> addCategory(@RequestBody Category category) throws CategoryException {
 
@@ -45,6 +45,7 @@ public class CategoryController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/get/{categoryId}")
 	public ResponseEntity<Category> getCategory(@PathVariable("categoryId") Integer categoryId)
 			throws CategoryException {
@@ -63,6 +64,7 @@ public class CategoryController {
 
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/getAll")
 	public ResponseEntity<Set<Category>> getAllCategories() throws CategoryException {
 
@@ -75,7 +77,7 @@ public class CategoryController {
 		}
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ORGANIZATION')")
 	@PutMapping("/update")
 	public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws CategoryException {
 
@@ -88,6 +90,7 @@ public class CategoryController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/delete/{categoryId}")
 	public ResponseEntity<Category> deleteCategory(@PathVariable("categoryId") Integer categoryId)
 			throws CategoryException {

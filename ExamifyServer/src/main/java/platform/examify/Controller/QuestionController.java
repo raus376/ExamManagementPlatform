@@ -38,7 +38,7 @@ public class QuestionController {
 	@Autowired
 	private QuizService quizService;
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ORGANIZATION')")
 	@PostMapping("/create")
 	public ResponseEntity<Question> addQuestion(@RequestBody Question question) throws QuestionException {
 
@@ -55,6 +55,7 @@ public class QuestionController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/get/{questionId}")
 	public ResponseEntity<Question> getQuestion(@PathVariable("questionId") Long questionId) throws QuestionException {
 
@@ -72,6 +73,7 @@ public class QuestionController {
 
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/quiz/{quizId}")
 	public ResponseEntity<?> getAllQuestionByQuizId(@PathVariable("quizId") Integer quizId) throws QuestionException {
 
@@ -98,6 +100,7 @@ public class QuestionController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@GetMapping("/getAll/quiz/{quizId}")
 	public ResponseEntity<?> getAllQuestionOfAdminByQuizId(@PathVariable("quizId") Integer quizId)
 			throws QuestionException {
@@ -119,7 +122,7 @@ public class QuestionController {
 		}
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@PutMapping("/update")
 	public ResponseEntity<Question> updateQuestion(@RequestBody Question question) throws QuestionException {
 
@@ -132,6 +135,7 @@ public class QuestionController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ORGANIZATION')")
 	@DeleteMapping("/delete/{questionId}")
 	public ResponseEntity<Question> deleteQuestion(@PathVariable("questionId") Long questionId)
 			throws QuestionException {
@@ -145,6 +149,7 @@ public class QuestionController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN') or hasRole('NORMAL') or hasRole('ORGANIZATION')")
 	@PostMapping("/evaluate/quiz")
 	public ResponseEntity<?> evaluateQuiz(@RequestBody List<Question> questions) throws QuestionException {
 

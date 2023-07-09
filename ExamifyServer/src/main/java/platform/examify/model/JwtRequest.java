@@ -1,5 +1,6 @@
 package platform.examify.model;
 
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import lombok.ToString;
 @ToString
 public class JwtRequest {
 	
+	@Email(message = "Invalid Email Address !")
 	private String email;
 	private String password;
 

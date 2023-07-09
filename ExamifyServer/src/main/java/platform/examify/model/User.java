@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +20,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
 @Builder
@@ -31,12 +36,27 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@NotBlank @NotEmpty @Size(min = 3, max = 20,message = "UniqueName must contain at least 3 characters")
 	private String uniqueName;
+	
+//	@Pattern(regexp = "[A-Za-z0-9@]{4,15}",message = "Password must be 6 to 15 characters and must have at least 1 alphabate and 1 number")
+//	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?!.*\\s).{6,15}$", message = "Password must be 6 to 15 characters and must have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character")
+	@NotNull @NotBlank @NotEmpty
 	private String password;
+	
+	@Email(message = "Invalid Email Address.")
 	private String email;
+	
+	@NotBlank @NotEmpty @Size(min = 3, max = 20,message = "First Name must contain at least 3 characters")
 	private String firstName;
+	
+	@NotBlank @NotEmpty @Size(min = 3, max = 20,message = "Last Name must contain at least 3 characters")
 	private String lastName;
+	
+	@NotNull @Pattern(regexp = "[0-9]{10}",message = "Mobile number should be of 10 digits")
 	private String mobile;
+	
 	private String profileImage;
 	private Boolean isEnable = true;
 

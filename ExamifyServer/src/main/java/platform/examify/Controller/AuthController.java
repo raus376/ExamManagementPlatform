@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import platform.examify.Security.JwtHelper;
 import platform.examify.Service.UserService;
 import platform.examify.model.JwtRequest;
@@ -48,7 +49,7 @@ public class AuthController {
 	private Logger logger = LoggerFactory.getLogger(AuthController.class);
 
 	@PostMapping("/login")
-	public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) {
+	public ResponseEntity<JwtResponse> login(@Valid @RequestBody JwtRequest request) {
 
 		this.doAuthenticate(request.getEmail(), request.getPassword());
 
@@ -69,7 +70,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/role/register/{role}")
-	public ResponseEntity<User> createUserRoleBased(@RequestBody User user,@PathVariable("role") String role) throws Exception {
+	public ResponseEntity<User> createUserRoleBased(@Valid @RequestBody User user,@PathVariable("role") String role) throws Exception {
 
 		User createdUser = this.userService.createUserRoleBased(user,role);
 		return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);

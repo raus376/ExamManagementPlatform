@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { QuizQuestionsService } from 'src/app/services/quiz-questions.service';
 import Swal from 'sweetalert2';
 
@@ -14,7 +15,7 @@ export class ViewQuizQuestionsComponent implements OnInit{
   qTitle:any;
   question:any=[];
 
-  constructor(private _route:ActivatedRoute,private _quizQuestion:QuizQuestionsService,private _navigateRoute:Router){ }
+  constructor(private _route:ActivatedRoute,private _quizQuestion:QuizQuestionsService,private _navigateRoute:Router,private _login:LoginService){ }
 
   ngOnInit(): void {
     this.qId=this._route.snapshot.params['qid'];
@@ -39,6 +40,18 @@ export class ViewQuizQuestionsComponent implements OnInit{
       title:'Sure to Delelte ?'
     }).then((result)=>{
       if(result.isConfirmed){
+
+        //checking role for deleting quiz
+        // if (this._login.getUserRole() == 'ROLE_NORMAL' || this._login.getUserRole()=='ROLE_ORGANIZATION') {
+        //   Swal.fire({
+        //     title: 'You Logged as an Organization, You are not authorize to delete Question ! For more Connect Admin => raushan376kumar@gmail.com',
+        //     icon: 'error',
+        //     showConfirmButton: true,
+        //     timer: 20000 // 4 seconds
+        //   })
+        //   return;
+        // }
+
         this._quizQuestion.deleteQuestion(qId).subscribe((data)=>{
           Swal.fire({
             title: 'Question Deleted Successfully',

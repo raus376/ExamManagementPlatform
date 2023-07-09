@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit{
   isLoggedIn=false;
   user: any;
 
-  constructor(public login:LoginService){}
+  constructor(public login:LoginService,private _route:Router){}
   
   ngOnInit(): void {
     this.isLoggedIn=this.login.isLoggedIn();
@@ -44,9 +45,9 @@ export class NavbarComponent implements OnInit{
             timer: 6000 // 2 seconds
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = '/login'; // Redirect to the '/login' page
+              this._route.navigate(['login']);
             }else{
-              window.location.href = '/login'; // Redirect to the '/login' page
+              this._route.navigate(['login']);
             }
           });
         }else{

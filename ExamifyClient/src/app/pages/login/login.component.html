@@ -28,12 +28,14 @@
 
                     <!-- user_password field -->
                     <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>User Password</mat-label>
-                        <input
-                        [(ngModel)]="loginData.password"
-                        name="password"
-                        required type="password" matInput placeholder="Enter Your Password">
-                    </mat-form-field>
+                        <mat-label>Enter Your Password</mat-label>
+                        <input required [(ngModel)]="loginData.password" name="password" matInput 
+                          [type]="showPassword ? 'text' : 'password'" placeholder="Enter Your Password">
+                        <button mat-icon-button matSuffix type="button" (click)="showPassword = !showPassword" 
+                          [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                      </mat-form-field>
 
                     <div class="container text-center" style="margin-bottom: 20px;">
                         <button type="submit" mat-raised-button color="primary">Login</button>

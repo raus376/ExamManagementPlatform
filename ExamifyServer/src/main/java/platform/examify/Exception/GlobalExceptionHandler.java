@@ -82,5 +82,14 @@ public class GlobalExceptionHandler {
 		ped.setDescription(req.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(ped, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(AnswerException.class)
+	public ResponseEntity<ErrorDetails> answerExceptionHandler(AnswerException an, WebRequest req) {
+		ErrorDetails ped = new ErrorDetails();
+		ped.setTimestamp(LocalDateTime.now());
+		ped.setMessage(an.getMessage());
+		ped.setDescription(req.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(ped, HttpStatus.BAD_REQUEST);
+	}
 
 }

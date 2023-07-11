@@ -62,11 +62,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUserRoleBased(User user, String roleName) throws Exception {
 		// TODO Auto-generated method stub
+		Optional<User> isUserExitWithEmail = userRepository.findByEmail(user.getEmail());
+		if (isUserExitWithEmail.isPresent()) {
+			logger.info("User/Organization already Exists with Email: " + user.getEmail());
+			throw new UserException("User/Organization already present with Email: " + user.getEmail());
+		}
+
 		Optional<User> isUserExist = userRepository.findByUniqueName(user.getUniqueName());
 		User createdUser = new User();
 		if (isUserExist.isPresent()) {
-			logger.info("User already Exists");
-			throw new Exception("User already present");
+			logger.info("User/Organization already Exists with UniqueName: " + user.getUniqueName());
+			throw new Exception("User/Organization already present with UniquName: " + user.getUniqueName());
 		} else {
 			System.err.println(roleName);
 			Role role = null;

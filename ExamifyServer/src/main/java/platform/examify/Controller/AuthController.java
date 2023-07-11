@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import platform.examify.Exception.UserException;
 import platform.examify.Security.JwtHelper;
 import platform.examify.Service.UserService;
 import platform.examify.model.JwtRequest;
@@ -33,7 +34,7 @@ import platform.examify.model.User;
 @RequestMapping("/auth")
 @CrossOrigin("*")
 public class AuthController {
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -49,16 +50,21 @@ public class AuthController {
 	private Logger logger = LoggerFactory.getLogger(AuthController.class);
 
 	@PostMapping("/login")
-	public ResponseEntity<JwtResponse> login(@Valid @RequestBody JwtRequest request) {
+	public ResponseEntity<JwtResponse> login(@Valid @RequestBody JwtRequest request) throws UserException {
 
-		this.doAuthenticate(request.getEmail(), request.getPassword());
+		try {
+			this.doAuthenticate(request.getEmail(), request.getPassword());
 
-		UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
-		String token = this.helper.generateToken(userDetails);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+			String token = this.helper.generateToken(userDetails);
 
-		JwtResponse response = JwtResponse.builder().token(token).userName(userDetails.getUsername()).build();
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
+			JwtResponse response = JwtResponse.builder().token(token).userName(userDetails.getUsername()).build();
+
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			throw new UserException(e.getMessage());
+		}
 	}
 
 	@PostMapping("/register")
@@ -68,13 +74,18 @@ public class AuthController {
 		return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
 
 	}
-	
+
 	@PostMapping("/role/register/{role}")
-	public ResponseEntity<User> createUserRoleBased(@Valid @RequestBody User user,@PathVariable("role") String role) throws Exception {
+	public ResponseEntity<User> createUserRoleBased(@Valid @RequestBody User user, @PathVariable("role") String role)
+			throws Exception {
 
-		User createdUser = this.userService.createUserRoleBased(user,role);
-		return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
-
+		try {
+			User createdUser = this.userService.createUserRoleBased(user, role);
+			return new ResponseEntity<>(createdUser, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			throw new UserException(e.getMessage());
+		}
 	}
 
 	private void doAuthenticate(String email, String password) {
@@ -105,7 +116,7 @@ public class AuthController {
 	public User currentUser(Principal princple) {
 		return (User) this.userDetailsService.loadUserByUsername(princple.getName());
 	}
-	
+
 	@GetMapping("/test")
 	public String test() {
 		return "test";

@@ -23,7 +23,7 @@ public class Answer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(length=10000)
+	@Column(length=500000)
 	private String content;
 	
 	private String submittedAt;

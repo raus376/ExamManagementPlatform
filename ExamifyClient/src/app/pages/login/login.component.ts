@@ -103,7 +103,14 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           console.log(error);
+          
+          if(error.error.message==null || error.error.message==''){
+            Swal.fire("Opps ! Server Error !");
+            return;
+          }
+
           Swal.fire(error.error.message);
+         
           // if(error.error.description!='Credentials Invalid !!'){
           //   Swal.fire(error.error.text);
           // }else{

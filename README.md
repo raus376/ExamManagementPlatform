@@ -101,6 +101,21 @@ ExamifyServer Documentation -`http://35.154.65.143:8888`
 ExamifyClient Documentation -`http://examify.s3-website.ap-south-1.amazonaws.com/`
 
 ```
+<!-- ============================================  Deployed ======================================================  -->
+
+## Deployed On AWS
+
+
+<li>The Examify project was deployed on AWS using an EC2 instance, an S3 bucket, and an RDS (Relational Database Service).</li>
+<li>The ExamifyServer, which is the backend of the application, was deployed on an S3 bucket.</li>
+<li>The ExamifyClient, which is the frontend of the application, was also deployed on an S3 bucket.</li>
+<li>An Elastic IP was associated with the EC2 instance, providing a static public IP address.</li>
+<li>The Elastic IP was used as the base URL for the ExamifyClient, allowing access to the frontend application.</li>
+<li>The EC2 instance hosted the ExamifyServer and served as the backend for handling API requests.</li>
+<li>The S3 bucket stored and served the ExamifyServer and ExamifyClient files, ensuring reliable and scalable content delivery.</li>
+<li>The RDS was used as the database for the application, storing data such as user profiles, quiz details, and results.</li>
+
+
 
 <!-- ============================================  INSTALLATION AND RUN ======================================================  -->
 

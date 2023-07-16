@@ -24,14 +24,15 @@ public class AppConfig {
 //		return new InMemoryUserDetailsManager(user, user1);
 //	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+//should be ...
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
-	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
-		return builder.getAuthenticationManager();
-	}
+//	@Bean
+//	public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
+//		return builder.getAuthenticationManager();
+//	S}
 
 }

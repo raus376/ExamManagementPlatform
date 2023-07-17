@@ -96,9 +96,9 @@ The following Diagram depicts the flow of our Entity Relation Diagram to simplif
 ```
 ## Documentation
 
-SWAGGER UI Documentation :- `http://localhost:8888/swagger-ui/`
-ExamifyServer Documentation :-`http://35.154.65.143:8888`
-ExamifyClient Documentation :-`http://examify.s3-website.ap-south-1.amazonaws.com/`
+SWAGGER UI Documentation - `http://localhost:8888/swagger-ui/`
+ExamifyServer Documentation -`http://35.154.65.143:8888`
+ExamifyClient Documentation -`http://examify.s3-website.ap-south-1.amazonaws.com/`
 
 ```
 <!-- ============================================  Deployed ======================================================  -->

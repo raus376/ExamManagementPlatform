@@ -5,8 +5,9 @@ The Exam Portal is a web application built using Spring Boot for the backend, An
 
 Author - **[@Raushan Kumar](https://github.com/raus376)**
 
-![Examify_home](https://github.com/raus376/ExamManagementPlatform/assets/48019264/d9793ade-000f-497c-bbeb-d590ac76260d)
 
+
+![Examify_home](https://github.com/raus376/ExamManagementPlatform/assets/48019264/7d33fd66-2249-48aa-b7b3-7732476ca1c6)
 
 <!-- ============================================  ER - DIAGRAM ======================================================  -->
 
@@ -15,7 +16,8 @@ Author - **[@Raushan Kumar](https://github.com/raus376)**
 The following Diagram depicts the flow of our Entity Relation Diagram to simplify the work flow.
 <br>
 <br>
-![Examify_ER-Diagram](https://github.com/raus376/ExamManagementPlatform/assets/48019264/9bac5a3c-1f8f-4631-bf8a-70b0c7f6323e)
+![Examify_ER-Diagram](https://github.com/raus376/ExamManagementPlatform/assets/48019264/ea516fe1-ea62-484f-93a2-50b8802bdb13)
+
 
 <br>
 <br>
